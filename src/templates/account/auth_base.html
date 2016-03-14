@@ -17,36 +17,36 @@
 {% endblock %}
 
 {% block container %}
-
 <div class=container>
-<h1>{% trans 'My Account' %}</h1>
+  {% if user.is_authenticated %}
+  <h1>{% trans 'My Account' %}</h1>
 
-<ul class="nav nav-tabs">
-  <li class="{% block account_nav_email %}{% endblock %}">
-    <a href="{% url 'account_email' %}">{% trans 'E-mail Addresses' %}</a>
-  </li>
-  <li class="{% block account_nav_change_password %}{% endblock %}">
-    <a href="{% url 'account_change_password' %}">{% trans 'Change Password' %}</a>
-  </li>
-  {% url 'socialaccount_connections' as connections_url %}
-  {% if connections_url %}
-  <li class="{% block account_nav_socialaccount_connections %}{% endblock %}">
-    <a href="{{ connections_url}}">{% trans 'Connected Accounts' %}</a>
-  </li>
-  {% else %}
-  <li>No connections url</li>
+  <ul class="nav nav-tabs">
+    <li class="{% block account_nav_email %}{% endblock %}">
+      <a href="{% url 'account_email' %}">{% trans 'E-mail Addresses' %}</a>
+    </li>
+    <li class="{% block account_nav_change_password %}{% endblock %}">
+      <a href="{% url 'account_change_password' %}">{% trans 'Change Password' %}</a>
+    </li>
+    {% url 'socialaccount_connections' as connections_url %}
+    {% if connections_url %}
+    <li class="{% block account_nav_socialaccount_connections %}{% endblock %}">
+      <a href="{{ connections_url}}">{% trans 'Connected Accounts' %}</a>
+    </li>
+    {% else %}
+    <li>No connections url</li>
+    {% endif %}
+  </ul>
   {% endif %}
-</ul>
-{% block account_content %}
-<div class="container form-box">
-  <div class="text-center">
-    <h2>{% block form_heading %}{% endblock %}</h2>
+  {% block account_content %}
+  <div class="container form-box">
+    <div class="text-center">
+      <h2>{% block form_heading %}{% endblock %}</h2>
+    </div>
+    {% block form %}
+    {% endblock %}
   </div>
-  {% block form %}
   {% endblock %}
-</div>
-{% endblock %}
-
 </div>
 
 {% endblock container %}

@@ -65,10 +65,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle profile-menu" data-toggle="dropdown" aria-expanded="false">
     			                 <img src="{% thumbnail user.profile.picture|default:'default_profile.png' 30x30 crop %}" alt="" />
-    			                 {{ user.get_full_name|truncatechars:20 }}
+    			                 {{ user.display_name|truncatechars:20 }}
     			                 <span class="caret"></span>
     		                </a>
-
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{% url 'profiles:show_self' %}">Profile</a></li>
                         <li><a href="{% url 'account_logout' %}">Logout</a></li>
@@ -77,7 +76,6 @@
                     </li>
                   {% endif %}
                 {% endblock %}
-              </ul>
               </ul>
             </div><!--/.nav-collapse -->
             {% endblock %}
@@ -95,16 +93,19 @@
           {% endfor %}
         {% endif %}
       {% endblock %}
+
       {% block splash %}
       {% endblock splash %}
-      </div>
-      {% block container %}
-      <div class="container">
+    </div>
 
-        <div class="starter-template">
-          <h1>New Project</h1>
-          <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-        </div>
+      {% block container %}
+        <div class="container">
+
+          <div class="starter-template">
+            <h1>New Project</h1>
+            <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+          </div>
+        </div><!-- /.container -->
       {% endblock container %}
 
       <!-- Site footer -->
@@ -134,9 +135,6 @@
       <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
       {% block scripts %}
       {% endblock scripts %}
-  	</div>
-
-
   </body>
 </html>
 
