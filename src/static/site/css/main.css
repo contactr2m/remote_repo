@@ -168,7 +168,7 @@ body>.navbar-transparent {
 .form-box form,
 .form-box .form-message {
   max-width: 330px;
-  padding: 0px;
+  padding: 15px;
   margin: 0 auto;
 }
 
@@ -239,83 +239,4 @@ body>.navbar-transparent {
     .dropdown.dropdown-lg .dropdown-menu {
         min-width: 500px;
     }
-}
-
-
-
-.header{
-  text-align: center;
-  padding-bottom: 20px;
-}
-
-.user-content{
-  width: 610px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-.middle{
-  text-align: center;
-  zoom: 1;
-}
-
-.middle .left-panel{
-  float: left;
-  width: calc( 50% - 11px );
-}
-
-.vertical-gap{
-  float: left;
-  margin-top: 90px;
-}
-
-.middle .right-panel{
-  float: right;
-  width: calc( 50% - 11px );
-}
-
-/*Social account*/
-.socialaccount_providers li a.socialaccount_provider {
-  rem-border: 1px solid #ddd;
-  border-radius: 10px;
-  rem-box-shadow: 2px 2px 8px rgba(0,0,0,.7);
-  -padding: 10px;
-  margin-bottom: 6px;
-  display: block;
-  width: 100%;
-  overflow: hidden;
-  rem-font-size: 1.2em;
-}
-
-.socialaccount_providers li a.socialaccount_provider:hover {
-  text-decoration: none;
-  box-shadow: 1px 1px 2px rgba(0,0,0,.7);
-}
-
-.socialaccount_providers li a.socialaccount_provider.facebook {
-  background: #4B67A3; /* technically gradient down to #3A579A */
-  color: #fff;
-}
-.socialaccount_providers li a.socialaccount_provider.facebook:before {
-  font-family: icomoon;
-  font-size: 1.9em;
-  content: "\e600";
-  display: inline-block;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-
-.socialaccount_providers li a.socialaccount_provider.google {
-  background: #DE4931;
-  color: #fff;
-}
-.socialaccount_providers li a.socialaccount_provider.google:before {
-  font-family: FontAwesome;
-  font-size: 1.9em;
-  content: "\f1a0";
-  display: inline-block;
-  padding-left: 8px;
-  padding-right: 8px;
 }

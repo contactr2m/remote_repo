@@ -5,6 +5,7 @@ import logging
 from . import models
 from allauth.account.signals import user_signed_up
 import hashlib
+
 logger = logging.getLogger("project")
 
 
@@ -54,7 +55,6 @@ def set_initial_user_names(request, user, sociallogin=None, **kwargs):
         #   verified = sociallogin.account.extra_data['verified']
             picture_url = "http://graph.facebook.com/{0}/picture?width={1}&height={1}".format(
                 sociallogin.account.uid, preferred_avatar_size_pixels)
-            user.email = sociallogin.account.extra_data['email']
 
         if sociallogin.account.provider == 'google':
             user.first_name = sociallogin.account.extra_data['given_name']
