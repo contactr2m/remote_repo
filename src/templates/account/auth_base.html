@@ -9,44 +9,44 @@
 
 {% block navbar-right %}
   {% if not user.is_authenticated %}
-<a class="btn btn-default" href="{% url 'account_login' %}" role="button">Log in</a>
-<a class="btn btn-primary" href="{% url 'account_signup' %}" role="button">Sign up</a>
+    <a class="btn btn-default" href="{% url 'account_login' %}" role="button">Log in</a>
+    <a class="btn btn-primary" href="{% url 'account_signup' %}" role="button">Sign up</a>
   {% else %}
     {{ block.super }}
   {% endif %}
 {% endblock %}
 
 {% block container %}
-<div class=container>
-  {% if user.is_authenticated %}
-  <h1>{% trans 'My Account' %}</h1>
+  <div class=container-fixed>
+    {% if user.is_authenticated %}
+      <h1>{% trans 'My Account' %}</h1>
 
-  <ul class="nav nav-tabs">
-    <li class="{% block account_nav_email %}{% endblock %}">
-      <a href="{% url 'account_email' %}">{% trans 'E-mail Addresses' %}</a>
-    </li>
-    <li class="{% block account_nav_change_password %}{% endblock %}">
-      <a href="{% url 'account_change_password' %}">{% trans 'Change Password' %}</a>
-    </li>
-    {% url 'socialaccount_connections' as connections_url %}
-    {% if connections_url %}
-    <li class="{% block account_nav_socialaccount_connections %}{% endblock %}">
-      <a href="{{ connections_url}}">{% trans 'Connected Accounts' %}</a>
-    </li>
-    {% else %}
-    <li>No connections url</li>
+      <ul class="nav nav-tabs">
+      <li class="{% block account_nav_email %}{% endblock %}">
+        <a href="{% url 'account_email' %}">{% trans 'E-mail Addresses' %}</a>
+      </li>
+      <li class="{% block account_nav_change_password %}{% endblock %}">
+        <a href="{% url 'account_change_password' %}">{% trans 'Change Password' %}</a>
+      </li>
+      {% url 'socialaccount_connections' as connections_url %}
+      {% if connections_url %}
+        <li class="{% block account_nav_socialaccount_connections %}{% endblock %}">
+          <a href="{{ connections_url}}">{% trans 'Connected Accounts' %}</a>
+        </li>
+      {% else %}
+        <li>No connections url</li>
+      {% endif %}
+      </ul>
     {% endif %}
-  </ul>
-  {% endif %}
-  {% block account_content %}
-  <div class="container form-box">
-    <div class="text-center">
-      <h2>{% block form_heading %}{% endblock %}</h2>
-    </div>
-    {% block form %}
+
+    {% block account_content %}
+      <div class="container form-box">
+        <div class="text-center">
+          <h2>{% block form_heading %}{% endblock %}</h2>
+        </div>
+        {% block form %}
+        {% endblock %}
+      </div>
     {% endblock %}
   </div>
-  {% endblock %}
-</div>
-
 {% endblock container %}

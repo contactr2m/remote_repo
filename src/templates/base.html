@@ -33,10 +33,9 @@
   </head>
 
   <body>
-    <div class="container-fixed">
       {% block navbar %}
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-          <div class = "container">
+          <div class="container-fixed-jumbo">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -52,38 +51,39 @@
               </a>
             </div>
             {% block navbar-menu %}
-            <div class="collapse navbar-collapse">
-              <ul class="nav navbar-nav nav-left">
-                {% block navbar-left %}{% endblock %}
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                {% block navbar-right %}
-                  {% if user.is_authenticated %}
-                    {% if user.is_staff %}
-                    <li><a href="{% url 'admin:index' %}">Admin</a></li>
-                    {% endif %}
-                    <li class="dropdown">
+              <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav nav-left">
+                  {% block navbar-left %}{% endblock %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                  {% block navbar-right %}
+                    {% if user.is_authenticated %}
+                      {% if user.is_staff %}
+                        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                      {% endif %}
+                        <li class="dropdown">
                         <a href="#" class="dropdown-toggle profile-menu" data-toggle="dropdown" aria-expanded="false">
-    			                 <img src="{% thumbnail user.profile.picture|default:'default_profile.png' 30x30 crop %}" alt="" />
-    			                 {{ user.display_name|truncatechars:20 }}
-    			                 <span class="caret"></span>
-    		                </a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="{% url 'profiles:show_self' %}">Profile</a></li>
-                        <li><a href="{% url 'account_logout' %}">Logout</a></li>
-                        <li><a href="{% url 'account_email'%}">Settings</a></li>
-                      </ul>
-                    </li>
-                  {% endif %}
-                {% endblock %}
-              </ul>
-            </div><!--/.nav-collapse -->
+      			                 <img src="{% thumbnail user.profile.picture|default:'default_profile.png' 30x30 crop %}" alt="" />
+      			                 {{ user.display_name|truncatechars:20 }}
+      			                 <span class="caret"></span>
+      		              </a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="{% url 'profiles:show_self' %}">Profile</a></li>
+                          <li><a href="{% url 'account_logout' %}">Logout</a></li>
+                          <li><a href="{% url 'account_email'%}">Settings</a></li>
+                        </ul>
+                        </li>
+                    {% endif %}
+                  {% endblock %}
+                </ul>
+              </div><!--/.nav-collapse -->
             {% endblock %}
           </div><!--/.fix container -->
         </div>
       {% endblock navbar %}
 
       {% block messages %}
+        
         {% if messages %}
           {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">  <!-- singular -->
@@ -92,14 +92,15 @@
             </div>
           {% endfor %}
         {% endif %}
+        
       {% endblock %}
 
       {% block splash %}
       {% endblock splash %}
-    </div>
+    
 
       {% block container %}
-        <div class="container">
+        <div class="container-fixed">
 
           <div class="starter-template">
             <h1>New Project</h1>

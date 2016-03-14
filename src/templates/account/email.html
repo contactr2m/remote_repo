@@ -1,7 +1,7 @@
 {% extends "account/auth_base.html" %}
 {% load crispy_forms_tags %}
 {% load i18n %}
-
+{% block account_nav_email %}active{% endblock %}
 {% block account_content %}
 <div class="container-fixed">
 {% if user.emailaddress_set.all %}
