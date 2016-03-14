@@ -100,7 +100,7 @@ class MyEmail(AddEmailForm):
         self.helper.form_method = "POST"
         self.helper.field_class = 'col-md-4'
         #   self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-1'
+        self.helper.label_class = 'col-md-2'
         self.helper.layout = Layout(
             Field('email', placeholder="Enter email address",
                   autofocus=""),
