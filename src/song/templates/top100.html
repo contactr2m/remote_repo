@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}TOP100{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="top100" %}
+{% endblock %}
+{% load nav_active %}
+
+{% block container %}
+<div class="container">
+    <h3>TOP 100 LYRICS</h3>
+    <div class="row">
+        <div class="col-sm-8">
+            <ul class="breadcrumb">
+                <li class={% active_nav request 'top100' %}>
+                    <a href="{% url 'songs:top100' %}">TOP100</a>
+                </li>
+                  <li class={% active_nav request 'videos' %}>
+                    <a href="{% url 'videos:videos' %}">VIDEOS</a>
+                  </li>
+                <li class={% active_nav request 'submit_lyrics' %}>
+                    <a href="{% url 'songs:add' %}">SUBMIT LYRICS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+ <div class="row">
+    <div class="col-sm-8">
+    <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Column heading</th>
+          <th>Column heading</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="info">
+          <td>3</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="success">
+          <td>4</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="danger">
+          <td>5</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="warning">
+          <td>6</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="active">
+          <td>7</td>
+          <td>Column content</td>
+          <td>Column content</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="col-sm-4">
+            <table class="table table-striped table-hover ">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Column heading</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Column content</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="info">
+          <td>3</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="success">
+          <td>4</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="danger">
+          <td>5</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="warning">
+          <td>6</td>
+          <td>Column content</td>
+        </tr>
+        <tr class="active">
+          <td>7</td>
+          <td>Column content</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+ </div>
+ </div>
+{% endblock container %}

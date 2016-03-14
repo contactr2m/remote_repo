@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}TOP100{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="top100" %}
+{% endblock %}

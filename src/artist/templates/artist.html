@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ block.super }}ARTIST{% endblock %}
+
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="artist" %}
+{% endblock %}
+
+{% load nav_active %}
+
+{% block container %}
+<div class="container">
+    <h3>ARTIST</h3>
+    <div class="row">
+        <div class="col-sm-8">
+            <ul class="breadcrumb">
+                <li class={% active_nav request 'albums' %}>
+                    <a href="{% url 'albums:albums' %}">ALBUMS</a>
+                </li>
+                <li class={% active_nav request 'artist' %}>
+                    <a href="{% url 'artist:artist' %}">ARTIST</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock container %}
