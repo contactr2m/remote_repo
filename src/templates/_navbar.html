@@ -1,15 +1,18 @@
-<!--<li {% if active_link == "about" %}class="active"{% endif %}><a href="{% url 'about' %}">ABOUT</a></li>-->
 <li {% if active_link == "top100" %}class="active"{% endif %}><a href="{% url 'songs:top100' %}">TOP100</a></li>
 <li {% if active_link == "videos" %}class="active"{% endif %}><a href="{% url 'videos:videos' %}">VIDEOS</a></li>
 <li {% if active_link == "news" %}class="active"{% endif %}><a href="{% url 'news:news' %}">NEWS</a></li>
 <li {% if active_link == "artist" %}class="active"{% endif %}><a href="{% url 'artist:artist' %}">ARTIST</a></li>
-<form class="navbar-form navbar-left" role="search">
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search this site">
-            <span class="input-group-btn">
-                <button type="submit" class="btn btn-default">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                </button>
-            </span>
-    </div>
-</form>
+
+{% if not active_link == "home" %}
+    <form class="navbar-form navbar-left" role="search">
+      <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search this site">
+              <span class="input-group-btn">
+                  <button type="submit" class="btn btn-default">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                  </button>
+              </span>
+          </input>
+      </div>
+    </form>
+  {% endif %}
