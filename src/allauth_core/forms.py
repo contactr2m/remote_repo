@@ -17,7 +17,9 @@ class MyLoginForm(LoginForm):
         self.fields["login"].widget.input_type = "email"  # ugly hack
         self.helper.form_method = "POST"
         self.helper.form_action = "account_login"
-        self.helper.form_class = "login"
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = 'col-lg-4'
+        self.helper.field_class = 'col-lg-8'
         self.helper.layout = Layout(
             Field('login', placeholder="Enter Email", autofocus=""),
             Field('password', placeholder="Enter Password"),

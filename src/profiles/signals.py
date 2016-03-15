@@ -5,7 +5,6 @@ import logging
 from . import models
 from allauth.account.signals import user_signed_up
 import hashlib
-
 logger = logging.getLogger("project")
 
 

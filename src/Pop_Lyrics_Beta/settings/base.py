@@ -135,6 +135,6 @@ MESSAGE_TAGS = {
 # Authentication Settings
 AUTH_USER_MODEL = 'accounts_user.EmailUser'
 LOGIN_REDIRECT_URL = reverse_lazy("profiles:show_self")
-LOGIN_URL = reverse_lazy("account_login")
+#LOGIN_URL = reverse_lazy("account_login")
 
 THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails

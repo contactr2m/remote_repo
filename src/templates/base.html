@@ -83,7 +83,6 @@
       {% endblock navbar %}
 
       {% block messages %}
-        
         {% if messages %}
           {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">  <!-- singular -->
@@ -92,7 +91,6 @@
             </div>
           {% endfor %}
         {% endif %}
-        
       {% endblock %}
 
       {% block splash %}
