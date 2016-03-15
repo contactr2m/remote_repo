@@ -45,11 +45,8 @@ def set_initial_user_names(request, user, sociallogin=None, **kwargs):
         #   verified = sociallogin.account.extra_data['verified']
             picture_url = "http://graph.facebook.com/{0}/picture?width={1}&height={1}".format(
                 sociallogin.account.uid, preferred_avatar_size_pixels)
-<<<<<<< HEAD:src/profiles/signals.py
-=======
             user.email = sociallogin.account.extra_data['email']
             email_verified = sociallogin.account.extra_data['verified']
->>>>>>> allauth:src/profiles/signals.py
 
         if sociallogin.account.provider == 'google':
             user.first_name = sociallogin.account.extra_data['given_name']
