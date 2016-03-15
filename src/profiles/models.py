@@ -37,10 +37,3 @@ class Profile(BaseProfile):
     def __str__(self):
         return "{}'s profile". format(self.user)
 
-    # def account_verified(self):
-    #     if self.user.is_authenticated:
-    #         result = EmailAddress.objects.filter(email=self.user.email)
-    #         if len(result):
-    #             return result[0].verified
-    #     return False
-

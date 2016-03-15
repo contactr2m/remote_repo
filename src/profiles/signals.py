@@ -9,16 +9,6 @@ import hashlib
 logger = logging.getLogger("project")
 
 
-# @receiver(post_save, sender=settings.AUTH_USER_MODEL)
-# def create_profile_handler(sender, instance, created, **kwargs):
-#     if not created:
-#         return
-#     # Create the profile object, only if it is newly created
-#     profile = models.Profile(user=instance)
-#     profile.save()
-#     logger.info('New user profile for {} created'.format(instance))
-
-
 @receiver(user_signed_up)
 def set_initial_user_names(request, user, sociallogin=None, **kwargs):
     """
@@ -41,7 +31,7 @@ def set_initial_user_names(request, user, sociallogin=None, **kwargs):
         hashlib.md5(user.email.encode('UTF-8')).hexdigest(),
         preferred_avatar_size_pixels
     )
-
+    email_verified = False
     if sociallogin:
         # Extract first / last names from social nets and store on User record
         if sociallogin.account.provider == 'twitter':
@@ -55,6 +45,11 @@ def set_initial_user_names(request, user, sociallogin=None, **kwargs):
         #   verified = sociallogin.account.extra_data['verified']
             picture_url = "http://graph.facebook.com/{0}/picture?width={1}&height={1}".format(
                 sociallogin.account.uid, preferred_avatar_size_pixels)
+<<<<<<< HEAD:src/profiles/signals.py
+=======
+            user.email = sociallogin.account.extra_data['email']
+            email_verified = sociallogin.account.extra_data['verified']
+>>>>>>> allauth:src/profiles/signals.py
 
         if sociallogin.account.provider == 'google':
             user.first_name = sociallogin.account.extra_data['given_name']
@@ -62,9 +57,13 @@ def set_initial_user_names(request, user, sociallogin=None, **kwargs):
         #   verified = sociallogin.account.extra_data['verified_email']
             picture_url = sociallogin.account.extra_data['picture']
 
-    profile = models.Profile(user=user, avatar_url=picture_url)
+    profile = models.Profile(user=user, avatar_url=picture_url, email_verified=email_verified)
     profile.save()
-
+    from allauth.account.models import EmailAddress
+    emails = EmailAddress.objects.filter(user=user, email=user.email)
+    for email in emails:
+        email.verified = True
+        email.save()
     user.guess_display_name()
     user.save()
     logger.info('New user profile for {} created'.format(user))

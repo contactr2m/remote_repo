@@ -112,7 +112,7 @@ ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
 ACCOUNT_SIGNUP_FORM_CLASS = 'profiles.forms.MySignupForm'
 ACCOUNT_USER_DISPLAY = lambda user: user.get_full_name() or user.email
-
+SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 
 ACCOUNT_FORMS = {
     'login': 'allauth_core.forms.MyLoginForm',
