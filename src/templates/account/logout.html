@@ -5,20 +5,18 @@
 {% endblock title %}
 
 {% block container %}
-    <div class="container-fixed">
-        <div class="form-message">
-            <h1 class="text-center">Log Out</h1>
-            <br></br>
-            <p class="text-center">Are you sure you want to log out ?</p>
-            <br></br>
-            <form method="post" action="{% url 'account_logout' %}">
-                {% csrf_token %}
-                {% if redirect_field_value %}
-                    <input type="hidden" name="{{redirect_field_name}}" value="{{redirect_field_value}}"/>
-                {% endif %}
+    <div class="form-message">
+        <h1 class="text-center">Log Out</h1>
+        <br></br>
+        <p class="text-center">Are you sure you want to log out ?</p>
+        <br></br>
+        <form method="post" action="{% url 'account_logout' %}">
+            {% csrf_token %}
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{redirect_field_name}}" value="{{redirect_field_value}}"/>
+            {% endif %}
 
-                <button name="logout" type="submit" class="btn btn-primary center-block">Log Out</button>
-            </form>
-        </div>
+            <button name="logout" type="submit" class="btn btn-primary center-block">Log Out</button>
+        </form>
     </div>
 {% endblock %}

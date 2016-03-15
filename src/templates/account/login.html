@@ -1,5 +1,5 @@
 {% extends "account/auth_base.html" %}
-{% load account socialaccount %}
+
 {% load crispy_forms_tags %}
 
 {% block title %}{{ block.super }}Log In{% endblock %}
@@ -7,26 +7,12 @@
 {% block form_heading %}Please Log In{% endblock %}
 
 {% block form %}
-    <div class="user-content">
-        <div class="middle">
-            {% get_providers as socialaccount_providers %}
-            {% if socialaccount_providers  %}
-              <div class="left-panel">
-                {% include "account/provider_panel.html" with process="login" %}
-              </div>
-            {% endif %}
-            <div class="vertical-gap">OR</div>
-            <div class="right-panel">
-                {% crispy form %}
+  {% crispy form %}
 
-                <div class="form-message">
-                    <br>
-                    <p>
-                        Don't have an account? <a href="{% url 'account_signup' %}">Sign up</a>.
-                    </p>
-                </div>
-             </div>
-         </div>
-     </div>
+  <div class="form-message">
+    <p>
+      Don't have an account? <a href="{% url 'account_signup' %}">Sign up</a>.
+    </p>
+  </div>
 {% endblock form %}
 

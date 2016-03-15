@@ -3,6 +3,19 @@
 
 {%load crispy_forms_tags%}
 
+{% block navbar-left %}
+  {% include "_navbar.html" with active_link="home" %}
+{% endblock %}
+
+{% block navbar-right %}
+  {% if not user.is_authenticated %}
+    <a class="btn btn-default" href="{% url 'account_login' %}" role="button">Log in</a>
+    <a class="btn btn-primary" href="{% url 'account_signup' %}" role="button">Sign up</a>
+  {% else %}
+    {{ block.super }}
+  {% endif %}
+{% endblock %}
+
 {% block container %}
   <div class=container-fixed>
     {% if user.is_authenticated %}
@@ -25,15 +38,15 @@
       {% endif %}
       </ul>
     {% endif %}
-  </div>
+
     {% block account_content %}
       <div class="container form-box">
-        <div class="header">
-          <h3>{% block form_heading %}{% endblock %}</h3>
+        <div class="text-center">
+          <h2>{% block form_heading %}{% endblock %}</h2>
         </div>
         {% block form %}
         {% endblock %}
       </div>
     {% endblock %}
-  
+  </div>
 {% endblock container %}
