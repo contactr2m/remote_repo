@@ -22,6 +22,7 @@ INSTALLED_APPS += (
     'django.contrib.sites',
     'allauth',
     'allauth_core',
+    'bootstrap3',
 
     'allauth.account',
     'allauth.socialaccount',
@@ -105,7 +106,7 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
-SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_AUTO_SIGNUP = False
 #   LOGIN_REDIRECT_URL = ''
 SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
@@ -122,4 +123,8 @@ ACCOUNT_FORMS = {
     'reset_password': 'allauth_core.forms.MyPasswordResetForm',
     'set_password': 'allauth_core.forms.MySetPasswordForm',
     'reset_password_from_key': 'allauth_core.forms.MyResetPasswordKeyForm'
+}
+
+SOCIALACCOUNT_FORMS = {
+    'signup': 'allauth_core.forms.MySocialSignupForm'
 }

@@ -59,7 +59,9 @@ class MySignupForm(forms.ModelForm):
         self.helper.form_method = "POST"
         self.helper.form_action = "account_signup"
         self.helper.form_id = "signup_form"
-        self.helper.form_class = "signup"
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = 'col-lg-4'
+        self.helper.field_class = 'col-lg-8'
         self.helper.layout = Layout(
             Field('email', placeholder="Enter Email", autofocus=""),
             Field('first_name', placeholder="Enter First Name"),
@@ -74,4 +76,5 @@ class MySignupForm(forms.ModelForm):
         user.last_name = self.cleaned_data['last_name']
         user.email = self.cleaned_data['email']
         user.save()
+        
 
