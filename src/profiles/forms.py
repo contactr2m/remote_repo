@@ -47,34 +47,11 @@ class ProfileForm(forms.ModelForm):
         fields = ['picture', 'bio', 'avatar_url', 'dob']
 
 
-class MySignupForm(forms.ModelForm):
-    class Meta:
-        model = get_user_model()
-        fields = ['email', 'first_name', 'last_name']
-
-    def __init__(self, *args, **kwargs):
-        super(MySignupForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.fields["email"].widget.input_type = "email"  # ugly hack
-        self.helper.form_method = "POST"
-        self.helper.form_action = "account_signup"
-        self.helper.form_id = "signup_form"
-        self.helper.form_class = "form-horizontal"
-        self.helper.label_class = 'col-lg-4'
-        self.helper.field_class = 'col-lg-8'
-        self.helper.layout = Layout(
-            Field('email', placeholder="Enter Email", autofocus=""),
-            Field('first_name', placeholder="Enter First Name"),
-            Field('last_name', placeholder="Enter Last Name"),
-            Field('password1', placeholder="Enter Password"),
-            Field('password2', placeholder="Re-enter Password"),
-            Submit('sign_up', 'Sign up', css_class="btn-warning"),
-        )
+class MyCustomSignupForm(forms.Form):
+    first_name = forms.CharField(max_length=30)
+    last_name = forms.CharField(max_length=30)
 
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
-        user.email = self.cleaned_data['email']
         user.save()
-        
-

@@ -1,7 +1,7 @@
 from django import forms
-from allauth.account.forms import (LoginForm, ChangePasswordForm, AddEmailForm,
+from allauth.account.forms import (LoginForm, ChangePasswordForm, AddEmailForm, SignupForm,
                                    ResetPasswordForm, SetPasswordForm, ResetPasswordKeyForm)
-from allauth.socialaccount.forms import SignupForm
+from allauth.socialaccount.forms import SignupForm as SocialSignupForm
 from django.contrib.auth import get_user_model
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, HTML, Button, Row, Field
@@ -112,7 +112,7 @@ class MyEmail(AddEmailForm):
         )
 
 
-class MySocialSignupForm(SignupForm):
+class MySocialSignupForm(SocialSignupForm):
     def __init__(self, *args, **kwargs):
         super(MySocialSignupForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
@@ -131,3 +131,23 @@ class MySocialSignupForm(SignupForm):
             Submit('sign_up', 'Sign up', css_class="btn-warning"),
         )
 
+
+class MySignupForm(SignupForm):
+    def __init__(self, *args, **kwargs):
+        super(MySignupForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.fields["email"].widget.input_type = "email"  # ugly hack
+        self.helper.form_method = "POST"
+        self.helper.form_action = "account_signup"
+        self.helper.form_id = "signup_form"
+        self.helper.form_class = "form-horizontal"
+        self.helper.label_class = 'col-lg-4'
+        self.helper.field_class = 'col-lg-8'
+        self.helper.layout = Layout(
+            Field('email', placeholder="Enter Email", autofocus=""),
+            Field('first_name', placeholder="Enter First Name"),
+            Field('last_name', placeholder="Enter Last Name"),
+            Field('password1', placeholder="Enter Password"),
+            Field('password2', placeholder="Re-enter Password"),
+            Submit('sign_up', 'Sign up', css_class="btn-warning"),
+        )

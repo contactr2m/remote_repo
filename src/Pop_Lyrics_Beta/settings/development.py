@@ -111,13 +111,13 @@ SOCIALACCOUNT_AUTO_SIGNUP = False
 SOCIALACCOUNT_QUERY_EMAIL = True
 ACCOUNT_LOGIN_ON_PASSWORD_RESET = True
 ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
-ACCOUNT_SIGNUP_FORM_CLASS = 'profiles.forms.MySignupForm'
+ACCOUNT_SIGNUP_FORM_CLASS = 'profiles.forms.MyCustomSignupForm'
 ACCOUNT_USER_DISPLAY = lambda user: user.get_full_name() or user.email
 SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 
 ACCOUNT_FORMS = {
     'login': 'allauth_core.forms.MyLoginForm',
-    #   'signup': 'accounts.forms.MySignupForm',
+    'signup': 'allauth_core.forms.MySignupForm',
     'add_email': 'allauth_core.forms.MyEmail',
     'change_password': 'allauth_core.forms.MyPasswordChangeForm',
     'reset_password': 'allauth_core.forms.MyPasswordResetForm',
