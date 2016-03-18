@@ -19,8 +19,9 @@ class MyLoginForm(LoginForm):
         self.helper.form_method = "POST"
         self.helper.form_action = "account_login"
         self.helper.form_class = "form-horizontal"
-        self.helper.label_class = 'col-lg-4'
+        #self.helper.label_class = 'col-lg-4'
         self.helper.field_class = 'col-lg-8'
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Field('login', placeholder="Enter Email", autofocus=""),
             Field('password', placeholder="Enter Password"),
@@ -28,7 +29,7 @@ class MyLoginForm(LoginForm):
                 reverse("account_reset_password"))),
             Field('remember'),
             Submit('sign_in', 'Log in',
-                   css_class="btn btn-lg btn-primary btn-block"),
+                   css_class="btn-primary"),
         )
 
 
@@ -40,6 +41,7 @@ class MyPasswordChangeForm(ChangePasswordForm):
         self.helper.form_action = "account_change_password"
         self.helper.form_class = "password_change"
         self.helper.form_method = "POST"
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Field('oldpassword', placeholder="Enter old password",
                   autofocus=""),
@@ -57,6 +59,7 @@ class MyPasswordResetForm(ResetPasswordForm):
         self.helper.form_action = "account_reset_password"
         self.helper.form_class = "password_reset"
         self.helper.form_method = "POST"
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Field('email', placeholder="Enter email",
                   autofocus=""),
@@ -71,6 +74,7 @@ class MySetPasswordForm(SetPasswordForm):
         self.helper.form_action = "account_set_password"
         self.helper.form_class = "password_set"
         self.helper.form_method = "POST"
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Field('password1', placeholder="Enter password",
                   autofocus=""),
@@ -84,6 +88,7 @@ class MyResetPasswordKeyForm(ResetPasswordKeyForm):
         super(MyResetPasswordKeyForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_action = "."
+        self.helper.form_show_labels = False
         #self.helper.form_class = "password_set"
         self.helper.form_method = "POST"
         self.helper.layout = Layout(
@@ -104,6 +109,7 @@ class MyEmail(AddEmailForm):
         self.helper.field_class = 'col-md-4'
         #   self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-md-2'
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Field('email', placeholder="Enter email address",
                   autofocus=""),
@@ -122,6 +128,7 @@ class MySocialSignupForm(SocialSignupForm):
         self.helper.form_class = "form-horizontal"
         self.helper.label_class = 'col-lg-4'
         self.helper.field_class = 'col-lg-8'
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Field('email', autofocus=""),
             Field('first_name'),
@@ -141,8 +148,9 @@ class MySignupForm(SignupForm):
         self.helper.form_action = "account_signup"
         self.helper.form_id = "signup_form"
         self.helper.form_class = "form-horizontal"
-        self.helper.label_class = 'col-lg-4'
+        #self.helper.label_class = 'col-lg-4'
         self.helper.field_class = 'col-lg-8'
+        self.helper.form_show_labels = False
         self.helper.layout = Layout(
             Field('email', placeholder="Enter Email", autofocus=""),
             Field('first_name', placeholder="Enter First Name"),

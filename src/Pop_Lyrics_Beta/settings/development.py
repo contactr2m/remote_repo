@@ -23,6 +23,7 @@ INSTALLED_APPS += (
     'allauth',
     'allauth_core',
     'bootstrap3',
+    'select_multiple_field',
 
     'allauth.account',
     'allauth.socialaccount',

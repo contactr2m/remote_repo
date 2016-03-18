@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from artist.models import Singer, Lyricist, MusicDirector
+from artist.models import Artist
 import uuid
 from django.utils.encoding import python_2_unicode_compatible
 # Create your models here.
@@ -47,10 +47,8 @@ class Song(TimeAuditModel):
     # TODO: Define fields here
     name = models.CharField(max_length=100)
     slug = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    singers = models.ManyToManyField(Singer, related_name='singer', blank=True)
+    artist = models.ManyToManyField(Artist, related_name='artist', blank=True)
     genres = models.ForeignKey(Genre, related_name='genre', blank=True, null=True)
-    lyricists = models.ManyToManyField(Lyricist, related_name='lyricist', blank=True)
-    musicDirectors = models.ManyToManyField(MusicDirector, related_name='musdicDirector', blank=True)
     lyrics = models.TextField(max_length=500)
 
     class Meta:

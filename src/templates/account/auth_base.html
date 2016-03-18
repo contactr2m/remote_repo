@@ -6,8 +6,6 @@
 {% block container %}
   <div class=container-fixed>
     {% if user.is_authenticated %}
-      <h1>{% trans 'My Account' %}</h1>
-
       <ul class="nav nav-tabs">
       <li class="{% block account_nav_email %}{% endblock %}">
         <a href="{% url 'account_email' %}">{% trans 'E-mail Addresses' %}</a>

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from song.models import Song, Genre
-from artist.admin import LyricistInline, SingerInline, MusicDirectorInline
+from artist.admin import ArtistInline
 from album.models import Album
 
 
@@ -40,15 +40,13 @@ class SongAdmin(admin.ModelAdmin):
     '''
     list_display = ('name', 'genres',)
     # list_filter = ('',)
-    inlines = [#GenreInline,
-               SingerInline,
-               LyricistInline,
-               MusicDirectorInline,
+    inlines = [
+                ArtistInline,
                ]
     # raw_id_fields = ('genres',)
     readonly_fields = ('slug',)
     search_fields = ('name',)
-    exclude = ('singers', 'lyricists', 'musicDirectors',)
+    exclude = ('artist',)
 
     # def save_model(self, request, obj, form, change):
     #     if not obj.pk:  # call super method if object has no primary key

@@ -73,12 +73,18 @@ body>.navbar-transparent {
 /* Custom container */
 .container-fixed-jumbo {
   margin: 0 auto;
-  max-width: 960px;
+  /*max-width: 1200px;*/
 }
 .container-fixed-jumbo > hr {
   margin: 30px 0;
 
 }
+
+.container-fixed-navbar{
+  margin: 0 auto;
+  max-width: 960px;
+}
+
 .container-fixed {
   margin: 0 auto;
   max-width: 960px;
@@ -199,7 +205,7 @@ body>.navbar-transparent {
 
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;
-    padding: 4px 20px;
+    padding: 4px 10px;
 }
 .input-group-btn .btn-group {
     display: flex !important;
@@ -208,7 +214,7 @@ body>.navbar-transparent {
 .btn-group .btn {
     border-radius: 0;
     margin-left: -1px;
-    height: 53px;
+    height: 51px;
     padding: 10px 16px;
     font-size: 18px;
     line-height: 1.33;
@@ -251,7 +257,7 @@ body>.navbar-transparent {
 }
 
 .form-box .user-content {
-  width: 700px;
+  width: 600px;
   margin-top: 0px;
   margin-bottom: 0px;
   margin-left:auto;
@@ -276,6 +282,7 @@ body>.navbar-transparent {
 .user-content .middle .right-panel{
   float: right;
   width: calc( 50% - 11px );
+  margin-left: 0px;
 }
 
 /*Social account*/
