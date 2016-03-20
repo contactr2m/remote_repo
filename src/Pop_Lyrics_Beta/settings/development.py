@@ -24,7 +24,7 @@ INSTALLED_APPS += (
     'allauth_core',
     'bootstrap3',
     'select_multiple_field',
-
+    'core',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',)
