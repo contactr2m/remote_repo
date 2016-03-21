@@ -46,7 +46,8 @@ class Song(TimeAuditModel):
     name = models.CharField(max_length=100, db_index=True)
     slug = AutoSlugField(populate_from='name', editable=True, blank=True, overwrite=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
-    song_artists = models.ManyToManyField('artist.Artist', related_name='song_artist',
+    artist = models.ForeignKey('artist.Artist', blank=True, null=True, related_name='song_artist')
+    song_artists = models.ManyToManyField('artist.Artist', related_name='credited',
                                           through='SongArtists',
                                           blank=True)
     album = models.ForeignKey('album.Album', blank=True, null=True, related_name='song_album',
@@ -85,9 +86,9 @@ class Song(TimeAuditModel):
         return super(Song, self).save(*args, **kwargs)
         # return super(Song, self).save(*args, **kwargs)
 
-    @models.permalink
+
     def get_absolute_url(self):
-        return reverse('songs:song-detail', kwargs={'pk': self.pk,
+        return reverse('songs:song-detail', kwargs={'pk': str(self.pk),
                                                     'slug': self.slug,
                                                     })
 

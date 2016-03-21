@@ -3,14 +3,27 @@ from django.contrib import admin
 # Register your models here.
 
 from artist.models import Artist
-from song.models import Song
+from core.admin import BaseAdmin
 
 
-class ArtistInline(admin.TabularInline):
-    model = Song.artist.through
+class ArtistAdmin(BaseAdmin):
 
+    list_display = ('name',)
+    search_fields = ['name', 'song__name']
+    list_filter = ('listed',)
 
-class ArtistAdmin(admin.ModelAdmin):
-    pass
+    # RelationsInline,
+    inlines = []
+
+    """"""
+    fieldsets = [
+        (None, {'fields': ['name', 'slug', 'listed']}),
+        ('Users', {'fields': ['creator', 'last_editor']}),
+    ]
+
+    raw_id_fields = [
+        'creator',
+        'last_editor',
+    ]
 
 admin.site.register(Artist, ArtistAdmin)

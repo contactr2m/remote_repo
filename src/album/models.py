@@ -13,6 +13,7 @@ from django.core.urlresolvers import reverse
 from core.util.custom_slug import unique_slugify
 import logging
 from core.models import TimeAuditModel
+from django.contrib.contenttypes.models import ContentType
 # Create your models here.
 logger = logging.getLogger("project")
 
@@ -89,13 +90,14 @@ class Album(TimeAuditModel):
     @models.permalink
     def get_absolute_url(self):
         return reverse('albums:album-detail', kwargs={'pk': self.pk,
-                                                      'slug': self.slug, })
+                                                      'slug': self.slug})
 
     def get_edit_url(self):
-        return reverse("albums:album-edit", args=(self.pk,))
+        return reverse("albums:album-edit", args=str(self.pk))
 
     def get_admin_url(self):
-        return reverse("admin:album_change", args=(self.pk,))
+        info = (self._meta.app_label, self._meta.model_name)
+        return reverse('admin:%s_%s_change' % info, args=str(self.pk,))
 
     def save(self, *args, **kwargs):
         unique_slugify(self, self.name)

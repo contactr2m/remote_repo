@@ -25,6 +25,7 @@ INSTALLED_APPS += (
     'bootstrap3',
     'select_multiple_field',
     'core',
+    'guardian',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',)
@@ -101,6 +102,7 @@ AUTHENTICATION_BACKENDS = (
 
     # `allauth` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
 )
 
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
