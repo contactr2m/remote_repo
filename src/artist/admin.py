@@ -8,7 +8,7 @@ from core.admin import BaseAdmin
 
 class ArtistAdmin(BaseAdmin):
 
-    list_display = ('name',)
+    list_display = ('name', 'listed', 'get_artisttypes',)
     search_fields = ['name', 'song__name']
     list_filter = ('listed',)
 
@@ -17,7 +17,8 @@ class ArtistAdmin(BaseAdmin):
 
     """"""
     fieldsets = [
-        (None, {'fields': ['name', 'slug', 'listed']}),
+        (None, {'fields': ['name', 'slug', 'listed', 'artisttype']}),
+        ('Personal details', {'fields': ['birthDate', 'gender', 'bio']}),
         ('Users', {'fields': ['creator', 'last_editor']}),
     ]
 

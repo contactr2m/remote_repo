@@ -16,11 +16,11 @@ urlpatterns = [
     url(r'^users/', include(profiles.urls, namespace='profiles')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^', include(videos.urls, namespace='videos')),
-    url(r'^', include(album.urls, namespace='albums')),
-    url(r'^', include(artist.urls, namespace='artist')),
-    url(r'^', include(news.urls, namespace='news')),
-    url(r'^', include(song.urls, namespace='songs')),
+    url(r'^videos/', include(videos.urls, namespace='videos')),
+    url(r'^albums/', include(album.urls, namespace='albums')),
+    url(r'^artist/', include(artist.urls, namespace='artist')),
+    url(r'^news/', include(news.urls, namespace='news')),
+    url(r'^songs/', include(song.urls, namespace='songs')),
 ]
 
 # User-uploaded files like profile pics need to be served in development

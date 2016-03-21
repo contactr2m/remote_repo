@@ -87,10 +87,8 @@ class Album(TimeAuditModel):
             return True
         return False
 
-    @models.permalink
     def get_absolute_url(self):
-        return reverse('albums:album-detail', kwargs={'pk': self.pk,
-                                                      'slug': self.slug})
+        return reverse("albums:album-detail", kwargs={'pk': self.pk, 'slug': self.slug})
 
     def get_edit_url(self):
         return reverse("albums:album-edit", args=str(self.pk))

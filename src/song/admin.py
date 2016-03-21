@@ -23,7 +23,7 @@ class SongInline(admin.TabularInline):
     '''
     model = Song
     exclude = ['slug', 'lyrics', 'creator']
-    #   readonly_fields = ['artist', ]
+    readonly_fields = ['artist', ]
     extra = 0
 
 
@@ -40,7 +40,7 @@ class SongAlbumInline(admin.TabularInline):
 
 class SongAdmin(BaseAdmin):
 
-    list_display = ('name', 'created_at', 'artist', )
+    list_display = ('name', 'created_at', 'release_link', 'artist', )
     search_fields = ['artist__name', 'album__name', 'name']
     list_filter = ()
 
@@ -49,13 +49,14 @@ class SongAdmin(BaseAdmin):
     readonly_fields = [
         'slug',
         'uuid',
+        'release_link',
     ]
 
     date_hierarchy = 'created_at'
 
     fieldsets = [
         (None, {'fields':
-                ['name', 'slug', 'uuid', ('album', ), 'artist', ]
+                ['name', 'slug', 'uuid', ('album', 'release_link',), 'artist', 'genres']
                 }),
 
         ('Users', {'fields': ['creator', 'last_editor']}),

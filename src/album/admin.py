@@ -99,7 +99,7 @@ class AlbumAdmin(BaseAdmin):
         <strong><a href="{object_url}">{object_name}</strong></a><br>
         by: {artist_name}<br>
         </p>""".format(
-            object_url= urlresolvers.reverse('admin:album_change', args=(obj.pk,)), # if obj.label else '#',
+            object_url= urlresolvers.reverse('admin:album_album_change', args=(obj.pk,)), # if obj.label else '#',
             object_name=obj.name[0:40],
             artist_name=obj.get_artist_display(),
             #   label_url=urlresolvers.reverse('admin:alibrary_label_change', args=(obj.label.pk,)) if obj.label else '#',

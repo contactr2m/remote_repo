@@ -20,6 +20,7 @@ class Genre(models.Model):
     slug = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     description = models.CharField(max_length=50, blank=True)
 
+
     class Meta:
         verbose_name = "Genre"
         verbose_name_plural = "Genres"
@@ -86,17 +87,26 @@ class Song(TimeAuditModel):
         return super(Song, self).save(*args, **kwargs)
         # return super(Song, self).save(*args, **kwargs)
 
-
     def get_absolute_url(self):
-        return reverse('songs:song-detail', kwargs={'pk': str(self.pk),
+        return reverse('songs:song-detail', kwargs={'pk': self.pk,
                                                     'slug': self.slug,
-                                                    })
+                                                    }, args=())
 
     def get_edit_url(self):
         return reverse("songs:song-edit", args=(self.pk,))
 
     def get_admin_url(self):
-        return reverse("admin:song_change", args=(self.pk,))
+        info = (self._meta.app_label, self._meta.model_name)
+        return reverse('admin:%s_%s_change' % info, args=str(self.pk,))
+
+    def release_link(self):
+        if self.album:
+            url = (reverse("admin:album_album_change", args=(self.album.id,)))
+            return '<a href="{}">{}</a>'.format(url, self.album.name)
+        return None
+
+    release_link.allow_tags = True
+    release_link.short_description = "Edit"
 
     def get_song_artists(self):
 

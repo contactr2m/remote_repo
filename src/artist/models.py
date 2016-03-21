@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 import uuid
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.encoding import (python_2_unicode_compatible, force_text)
 from django.conf import settings
 # Create your models here.
 from select_multiple_field.models import SelectMultipleField
@@ -54,7 +54,7 @@ class Artist(Person):
         (MusicDirector, _('MusicDirector')),
         (Lyricist, _('Lyricist')),
     )
-    type = SelectMultipleField(choices=ROLE_CHOICES, max_length=3, default=Singer)
+    artisttype = SelectMultipleField(choices=ROLE_CHOICES, max_length=3, default=Singer)
     bio = models.TextField(blank=True, null=True)
     #   Artist alias field, may be we need to create alias model too. low priority !
     #   Tagging field, low priority !
@@ -89,12 +89,10 @@ class Artist(Person):
         return self.__class__.__name__
 
     def save(self, *args, **kwargs):
-        # if not self.pk:
-        #     self.uuid = uuid.uuid4()
         unique_slugify(self, self.name)
+        self.update_summary(save=False)
         return super(Artist, self).save(*args, **kwargs)
 
-    @models.permalink
     def get_absolute_url(self):
         return reverse('artist:artist-detail', kwargs={
             'pk': self.pk,
@@ -105,7 +103,18 @@ class Artist(Person):
         return reverse("artist:artist-edit", args=(self.pk,))
 
     def get_admin_url(self):
-        return reverse("admin:artist_change", args=(self.pk,))
+        info = (self._meta.app_label, self._meta.model_name)
+        return reverse('admin:%s_%s_change' % info, args=str(self.pk,))
+
+    def get_albums(self):
+        from alibrary.models.releasemodels import Album
+        try:
+            r = Album.objects.filter(Q(song_album__artist=self) |
+                                     Q(song_album__song_artists=self) |
+                                     Q(album_artists=self)).distinct()
+            return r
+        except Exception, e:
+            return []
 
     # TODO: Fix Me
     def get_song(self):
@@ -115,3 +124,29 @@ class Artist(Person):
             return m
         except Exception, e:
             return []
+
+    def get_artisttypes(self):
+        if self.artisttype:
+            keys_choices = self.artisttype
+            return '%s' % (', '.join(filter(bool, keys_choices)))
+    get_artisttypes.short_description = _('Artist Type')
+
+    def update_summary(self, save=False):
+
+        self.summary = {
+            'num_albums': self.get_albums().count(),
+            'num_songs': self.get_song().count()
+        }
+
+        if save:
+            self.save()
+
+        return self.summary
+
+
+def show_artisttype(ingredient):
+    """
+    Decode topping to full name
+    """
+    decoder = dict(Artist.ROLE_CHOICES)
+    return force_text(decoder[ingredient])
