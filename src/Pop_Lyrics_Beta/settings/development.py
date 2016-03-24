@@ -14,18 +14,26 @@ if "celery" in sys.argv[0]:
 # Django Debug Toolbar
 INSTALLED_APPS += (
     'debug_toolbar.apps.DebugToolbarConfig',
+
+    'django_filters',
+    'core',
+    'bootstrap3',
+    'select_multiple_field',
+    'adv_cache_tag',
+
+    'guardian',
+    'pure_pagination',
+    'spurl',  # URL manipulation
+
     'artist',
     'album',
     'song',
     'videos',
     'news',
+    'allauth_core',
+
     'django.contrib.sites',
     'allauth',
-    'allauth_core',
-    'bootstrap3',
-    'select_multiple_field',
-    'core',
-    'guardian',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',)
@@ -85,9 +93,9 @@ LOGGING = {
             'level': 'DEBUG',
         },
         'werkzeug': {
-        'handlers': ['console'],
-        'level': 'DEBUG',
-        'propagate': True,
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
     }
 }
@@ -130,4 +138,10 @@ ACCOUNT_FORMS = {
 
 SOCIALACCOUNT_FORMS = {
     'signup': 'allauth_core.forms.MySocialSignupForm'
+}
+
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 6,
+    'MARGIN_PAGES_DISPLAYED': 3,
 }

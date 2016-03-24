@@ -71,10 +71,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'accounts',
     'crispy_forms',
     'easy_thumbnails',
+    'filer',
     'profiles',
 
 
@@ -138,3 +140,13 @@ LOGIN_REDIRECT_URL = reverse_lazy("profiles:show_self")
 #LOGIN_URL = reverse_lazy("account_login")
 
 THUMBNAIL_EXTENSION = 'png'     # Or any extn for your thumbnails
+THUMBNAIL_PROCESSORS = (
+    'easy_thumbnails.processors.colorspace',
+    'easy_thumbnails.processors.autocrop',
+    #'easy_thumbnails.processors.scale_and_crop',
+    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
+    'easy_thumbnails.processors.filters',
+    #'lib.thumbnail_processors.colors.colorize',
+)
+THUMBNAIL_QUALITY = 80
+THUMBNAIL_BASEDIR = 'thumbnails'

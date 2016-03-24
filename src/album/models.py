@@ -115,7 +115,7 @@ class Album(TimeAuditModel):
             for m in media:
                 try:
                     indicator[m.tracknumber - 1] = 3
-                except Exception, e:
+                except Exception as e:
                     logger.info('Error'.format(e))
                     pass
         else:

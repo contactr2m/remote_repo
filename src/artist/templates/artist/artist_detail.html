@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{%  load spurl %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
 
@@ -24,7 +24,7 @@
                     <a href="{% url 'artist:artist' %}">ARTIST</a>
                 </li>
             </ul>
-            
+
 <p>Date: {{ now|date }}</p>
         </div>
     </div>

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views import generic
-from django.utils import timezone
 from . models import Song
 
 # Create your views here
@@ -24,5 +23,4 @@ class SongDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(SongDetailView, self).get_context_data(**kwargs)
-        context['now'] = timezone.now()
         return context

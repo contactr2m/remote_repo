@@ -12,6 +12,7 @@ from core.util.custom_slug import unique_slugify
 from . managers import ArtistManager
 from django.db.models import Q
 from core.models import TimeAuditModel
+from django_extensions.db.fields.json import JSONField
 
 
 @python_2_unicode_compatible
@@ -42,7 +43,6 @@ class Person(TimeAuditModel):
 
 class Artist(Person):
     #   Define fields here
-    #   slug = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     slug = AutoSlugField(populate_from='name', editable=True, blank=True,
                          overwrite=True, db_index=True)
@@ -70,6 +70,7 @@ class Artist(Person):
                                  help_text=_('Should this Artist be shown on the default list?'))
     disable_editing = models.BooleanField(verbose_name='Disable Editing', default=False,
                                           help_text=_('Disable Editing. If verified by admin'))
+    summary = JSONField(null=True, blank=True)
 
     objects = ArtistManager()
 
@@ -107,13 +108,13 @@ class Artist(Person):
         return reverse('admin:%s_%s_change' % info, args=str(self.pk,))
 
     def get_albums(self):
-        from alibrary.models.releasemodels import Album
+        from album.models import Album
         try:
             r = Album.objects.filter(Q(song_album__artist=self) |
                                      Q(song_album__song_artists=self) |
                                      Q(album_artists=self)).distinct()
             return r
-        except Exception, e:
+        except Exception as e:
             return []
 
     # TODO: Fix Me
@@ -122,7 +123,7 @@ class Artist(Person):
         try:
             m = Song.objects.filter(Q(artist=self)).distinct()
             return m
-        except Exception, e:
+        except Exception as e:
             return []
 
     def get_artisttypes(self):
@@ -142,6 +143,24 @@ class Artist(Person):
             self.save()
 
         return self.summary
+
+    def appearances(self):
+
+        try:
+            num_albums = self.get_albums().count()
+        except:
+            num_albums = 0
+
+        try:
+            num_songs = self.get_song().count()
+        except:
+            num_songs = 0
+
+        appearances = {
+            'num_albums': num_albums,
+            'num_songs': num_songs
+        }
+        return appearances
 
 
 def show_artisttype(ingredient):

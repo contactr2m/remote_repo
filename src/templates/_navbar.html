@@ -1,7 +1,7 @@
 <li {% if active_link == "top100" %}class="active"{% endif %}><a href="{% url 'songs:top100' %}">TOP100</a></li>
 <li {% if active_link == "videos" %}class="active"{% endif %}><a href="{% url 'videos:videos' %}">VIDEOS</a></li>
 <li {% if active_link == "news" %}class="active"{% endif %}><a href="{% url 'news:news' %}">NEWS</a></li>
-<li {% if active_link == "artist" %}class="active"{% endif %}><a href="{% url 'artist:artist' %}">ARTIST</a></li>
+<li {% if active_link == "artist" %}class="active"{% endif %}><a href="{% url 'artist:artist-list' %}">ARTIST</a></li>
 
 {% if not active_link == "home" %}
     <form class="navbar-form navbar-left" role="search">

@@ -1,0 +1,86 @@
+{% load  i18n thumbnail truncate spurl adv_cache hash_tags humanize %}
+<p>
+        <strong>
+          {% trans 'Warning:'%}
+        </strong>
+</p>
+<div class="list_body_row selectable clickable item artist view edit stream collect download" id="list_item_{{ item.pk }}"
+     data-absolute_url="{{ item.get_absolute_url }}"
+     {% if item.main_image %}
+     data-image_color="{% thumbnail item.main_image 200x200 crop upscale subject_location=item.main_image.subject_location %}"
+     data-image_bw="{% thumbnail item.main_image 200x200 crop bw upscale subject_location=item.main_image.subject_location %}"
+     {% endif %}
+     {% if item.main_image %}style="background-image: url({% thumbnail item.main_image 200x200 crop bw upscale subject_location='0,0' %});"{% endif %}>
+
+
+    <div class="wrapper_info">
+
+        <div class="wrapper_inner">
+
+            <div class="list_body_item">
+                <ul class="title">
+                    <li class="bold">
+
+                        <a href="{{ item.get_absolute_url }}" title="{{ item.name }}">
+                            {{ item.name|truncate_chars_inner:24 }}
+                        </a>
+                    </li>
+
+                    <li>
+                        {% if item.artisttype %}
+                            {{ item.artisttype|capfirst }}
+                        {% endif %}&nbsp;
+                    </li>
+                </ul>
+
+                <ul class="unstyled horizontal">
+                    {% if item.appearances.num_albums > 0 %}
+                        <li>
+                            {% url "alibrary-release-list" as release_list %}
+                            {% trans "Albums" %}:&nbsp;<a
+                                href="{% spurl path=release_list query="artist={{ item.slug }}" %}"
+                                title="{% trans "Only show releases by" %} {{ item.name }}"
+                                style="vertical-align: top;">{{ item.appearances.num_albums }}<!--<span
+                                class="filter icon"></span>--></a>
+                        </li>
+                    {% endif %}
+                    {% if item.appearances.num_songs > 0 %}
+                        <li style="padding-left: 30px">
+                            {% url "alibrary-media-list" as media_list %}
+                            {% trans "Songs" %}:&nbsp;<a
+                                href="{% spurl path=media_list query="artist={{ item.slug }}" %}"
+                                title="{% trans "Only show tracks by" %} {{ item.name }}"
+                                style="vertical-align: top;">{{ item.appearances.num_songs }}<!--<span
+                                class="filter icon"></span>--></a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+
+
+            </div>
+
+            <div class="list_body_item links external">
+                <ul class="links external unstyled">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="by" style="position: absolute; bottom: 0; left: 5px; color: #999;">
+        {% if item.creator %}
+            <!--{% trans "by" %}:-->
+            <a style="color: #999;"
+               title="{{ item.creator.profile.get_display_name }}"
+               href="{{ item.creator.get_absolute_url }}">
+                {{ item.creator.profile.get_display_name|truncate_chars:16 }}
+            </a>
+            |
+        {% endif %}
+        <!--{{ item.created|naturalday }}-->
+        {{ item.created_at|date:"SHORT_DATE_FORMAT" }}
+    </div>
+
+</div>
+
+
