@@ -18,7 +18,7 @@
 <div class="container-fixed">
     <h3>ARTIST</h3>
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-9">
             <ul class="breadcrumb">
                 <li class={% active_nav request 'albums' %}>
                     <a href="{% url 'albums:albums' %}">ALBUMS</a>
@@ -29,89 +29,91 @@
             </ul>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="listhead">
 
-    <div class="listhead">
+                <div class="pagination-holder">
+                    {% include "element/_pagination.html" %}
+                </div>
 
-        <div class="pagination-holder">
-            {% include "element/_pagination.html" %}
-        </div>
+                <div class="wrapper list_style">
 
-        <div class="wrapper list_style">
-
-                <ul class="list-unstyled">
-                    <li class="left">
-                        <a href="{% spurl base=request.get_full_path set_query="list_style=s" %}" title="Set Style" class="action list_style s {% if list_style == "s" %}active{% endif %}"><i class="fa fa-th-list"></i></a>
-                    </li>
-                    <li class="left">
-                        <a href="{% spurl base=request.get_full_path set_query="list_style=l" %}" title="Set Style" class="action list_style l {% if list_style == "l" %}active{% endif %}"><i class="fa fa-th-large"></i></a>
-                    </li><li class="clear"></li>
-                </ul>
-        </div>
-
-    </div>
-
-    <div class="listview container artists {{ list_style }}">
-
-        {% if list_style == "s" %}
-        <div class="list_header">
-            <div class="list_header_item c1">
-                &nbsp;
+                        <ul class="list-unstyled">
+                            <li class="left">
+                                <a href="{% spurl base=request.get_full_path set_query="list_style=s" %}" title="Set Style" class="action list_style s {% if list_style == "s" %}active{% endif %}"><i class="fa fa-th-list"></i></a>
+                            </li>
+                            <li class="left">
+                                <a href="{% spurl base=request.get_full_path set_query="list_style=l" %}" title="Set Style" class="action list_style l {% if list_style == "l" %}active{% endif %}"><i class="fa fa-th-large"></i></a>
+                            </li><li class="clear"></li>
+                        </ul>
+                </div>
             </div>
-            <div class="list_header_item c2 sortable {% if get.order_by == "name" %}active{% endif %} {{ get.direction }}">
-                <a href="{% spurl base=request.get_full_path set_query="order_by=name" toggle_query="direction=ascending,descending" %}" style="display: block;">{% trans "Name" %}</a>
-            </div>
-            <div class="list_header_item c3">
-                {% trans "Available" %}
-            </div>
-            <div class="list_header_item c4">
-                {% trans "External links" %}
-            </div>
-            <div class="list_header_item c5 sortable {% if get.order_by == "updated_at" %}active{% endif %} {{ get.direction }}">
-                <a href="{% spurl base=request.get_full_path set_query="order_by=updated_at" toggle_query="direction=ascending,descending" %}" style="display: block;">{% trans "Modified" %}</a>
-            </div>
-            <div class="list_header_item c6">
-            &nbsp;
-            </div>
-        </div>
-        {% endif %}
 
-        <div class="list_body">
+            <div class="listview container artists {{ list_style }}">
 
-            {% hash_user_groups request.user as group_hash %}
-
-            {% for item in object_list %}
-
-                {# switching list styles #}
                 {% if list_style == "s" %}
-
-                    {% cache 600 "artist_list_item_s" item.pk group_hash item.updated_at %}
-                    {% include "artist/list_item_s.html" %}
-                    {% endcache %}
-
+                <div class="list_header">
+                    <div class="list_header_item c1">
+                        &nbsp;
+                    </div>
+                    <div class="list_header_item c2 sortable {% if get.order_by == "name" %}active{% endif %} {{ get.direction }}">
+                        <a href="{% spurl base=request.get_full_path set_query="order_by=name" toggle_query="direction=ascending,descending" %}" style="display: block;">{% trans "Name" %}</a>
+                    </div>
+                    <div class="list_header_item c3">
+                        {% trans "Available" %}
+                    </div>
+                    <div class="list_header_item c4">
+                        {% trans "External links" %}
+                    </div>
+                    <div class="list_header_item c5 sortable {% if get.order_by == "updated_at" %}active{% endif %} {{ get.direction }}">
+                        <a href="{% spurl base=request.get_full_path set_query="order_by=updated_at" toggle_query="direction=ascending,descending" %}" style="display: block;">{% trans "Modified" %}</a>
+                    </div>
+                    <div class="list_header_item c6">
+                    &nbsp;
+                    </div>
+                </div>
                 {% endif %}
 
-                {% if list_style == "m" %}
-                {% include "artist/list_item_m.html" %}
-                {% endif %}
+                <div class="list_body">
+
+                    {% hash_user_groups request.user as group_hash %}
+
+                    {% for item in object_list %}
+
+                        {# switching list styles #}
+                        {% if list_style == "s" %}
+
+                            {% cache 600 "artist_list_item_s" item.pk group_hash item.updated_at %}
+                            {% include "artist/list_item_s.html" %}
+                            {% endcache %}
+
+                        {% endif %}
+
+                        {% if list_style == "m" %}
+                        {% include "artist/list_item_m.html" %}
+                        {% endif %}
 
 
-                {% if list_style == "l" %}
+                        {% if list_style == "l" %}
 
-                    {% cache 600 "artist_list_item_l" item.pk group_hash item.updated_at %}
-                    {% include "artist/list_item_l.html" %}
-                    {% endcache %}
+                            {% cache 600 "artist_list_item_l" item.pk group_hash item.updated_at %}
+                            {% include "artist/list_item_l.html" %}
+                            {% endcache %}
 
-                {% endif %}
+                        {% endif %}
 
-                {% empty %}
-                    <p style="padding: 20px; text-align: center;">
-                        {% trans 'No results to display.' %}
-                    </p>
-            {% endfor %}
+                        {% empty %}
+                            <p style="padding: 20px; text-align: center;">
+                                {% trans 'No results to display.' %}
+                            </p>
+                    {% endfor %}
 
+                </div>
+            </div>
         </div>
-
-
+        <div class="col-sm-3 sidebar">
+        </div>
     </div>
 </div>
 {% endblock container %}

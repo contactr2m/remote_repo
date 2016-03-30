@@ -1,9 +1,5 @@
 {% load  i18n thumbnail truncate spurl adv_cache hash_tags humanize %}
-<p>
-        <strong>
-          {% trans 'Warning:'%}
-        </strong>
-</p>
+
 <div class="list_body_row selectable clickable item artist view edit stream collect download" id="list_item_{{ item.pk }}"
      data-absolute_url="{{ item.get_absolute_url }}"
      {% if item.main_image %}
@@ -12,6 +8,12 @@
      {% endif %}
      {% if item.main_image %}style="background-image: url({% thumbnail item.main_image 200x200 crop bw upscale subject_location='0,0' %});"{% endif %}>
 
+    <div class="spacer tag-cloud">
+
+        <ul class="tags unstyled horizontal">
+            <li></li>
+        </ul>
+    </div>
 
     <div class="wrapper_info">
 
@@ -40,8 +42,7 @@
                             {% trans "Albums" %}:&nbsp;<a
                                 href="{% spurl path=release_list query="artist={{ item.slug }}" %}"
                                 title="{% trans "Only show releases by" %} {{ item.name }}"
-                                style="vertical-align: top;">{{ item.appearances.num_albums }}<!--<span
-                                class="filter icon"></span>--></a>
+                                style="vertical-align: top;">{{ item.appearances.num_albums }}</a>
                         </li>
                     {% endif %}
                     {% if item.appearances.num_songs > 0 %}
@@ -50,8 +51,7 @@
                             {% trans "Songs" %}:&nbsp;<a
                                 href="{% spurl path=media_list query="artist={{ item.slug }}" %}"
                                 title="{% trans "Only show tracks by" %} {{ item.name }}"
-                                style="vertical-align: top;">{{ item.appearances.num_songs }}<!--<span
-                                class="filter icon"></span>--></a>
+                                style="vertical-align: top;">{{ item.appearances.num_songs }}</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -67,9 +67,9 @@
         </div>
     </div>
 
-    <div class="by" style="position: absolute; bottom: 0; left: 5px; color: #999;">
+    <!--<div class="by" style="position: absolute; bottom: 0; left: 5px; color: #999;">
         {% if item.creator %}
-            <!--{% trans "by" %}:-->
+            {% trans "by" %}:
             <a style="color: #999;"
                title="{{ item.creator.profile.get_display_name }}"
                href="{{ item.creator.get_absolute_url }}">
@@ -77,9 +77,9 @@
             </a>
             |
         {% endif %}
-        <!--{{ item.created|naturalday }}-->
+        {{ item.created|naturalday }}
         {{ item.created_at|date:"SHORT_DATE_FORMAT" }}
-    </div>
+    </div>-->
 
 </div>
 
