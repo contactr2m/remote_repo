@@ -87,7 +87,7 @@ body>.navbar-transparent {
 
 .container-fixed {
   margin: 0 auto;
-  max-width: 960px;
+  max-width: 960px;!important;
   padding-top: 50px;
 }
 .container-fixed > hr {
@@ -327,4 +327,1498 @@ body>.navbar-transparent {
   display: inline-block;
   padding-left: 8px;
   padding-right: 8px;
+}
+
+
+/*List view*/
+
+.listhead {
+  padding: 5px 2px 20px 5px;
+  font-size: 90%;
+  height: 20px;
+  margin-top: 2px;
+  max-width: 960px;
+}
+
+.listhead .pagination-holder {
+  float: right;
+}
+
+.listhead .pagination-holder p.pagination {
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  font-size: 100%;
+}
+
+.listhead .pagination-holder p.pagination span, .listhead .pagination-holder p.pagination a {
+  padding: 4px 6px 3px;
+}
+
+.listhead .pagination-holder p.pagination a {
+  background: white;
+}
+
+.listhead .pagination-holder p.pagination a:hover {
+  background: #6633cc;
+  color: white;
+  text-decoration: none;
+}
+
+.listhead .pagination-holder p.pagination span.current {
+  background: #00bb73;
+  color: white;
+}
+
+.listhead .wrapper.list_style {
+  padding: 2px 0 0 0;
+  height: 20px;
+  float: left;
+}
+
+.listhead .wrapper.list_style > div {
+  background-color: red;
+}
+
+.listhead .wrapper.list_style a.action.list_style {
+  padding: 0 0 0 2px;
+  background-position: 0px 0px;
+  display: block;
+  height: 16px;
+}
+
+.listhead .wrapper.list_style a.action.list_style:hover, .listhead .wrapper.list_style a.action.list_style.active {
+  background-position: 0 -16px;
+}
+
+.listhead .wrapper.list_style a.action.list_style.s {
+  background-image: url("/static/img/base/listview.style.s.png");
+}
+
+.listhead .wrapper.list_style a.action.list_style.m {
+  background-image: url("/static/img/base/listview.style.m.png");
+}
+
+.listhead .wrapper.list_style a.action.list_style.l {
+  background-image: url("/static/img/base/listview.style.l.png");
+}
+
+
+.listview.container .play-all-wrapper {
+  text-align: center;
+  margin: 20px 0 12px;
+}
+
+.listview.container .play-all-wrapper .wrapper {
+  padding: 10px;
+  background: white;
+  position: relative;
+  text-align: center;
+}
+
+.listview.container .play-all-wrapper .wrapper:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+  border-top: solid 9px #f9f9f9;
+  border-left: solid 9px transparent;
+  border-right: solid 9px transparent;
+}
+
+.listview.container .play-all-wrapper .wrapper .play-button {
+  width: 120px;
+  margin: 0 auto;
+  padding: 3px 8px 2px;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: #a5a5a5;
+  cursor: pointer;
+}
+
+.listview.container .play-all-wrapper .wrapper .play-button.hover {
+  color: #00bb73;
+}
+
+
+.listview {
+  /*background-color: #ababab; */
+  display: table;
+  width: 100%;
+  border-spacing: 0px;
+}
+
+.listview.container .list_body_row ul {
+  margin: 0;
+}
+
+.listview.container .list_body_row .license
+img {
+  height: 10px;
+}
+
+.listview .list_header {
+  display: table-row;
+  color: #666666;
+  font-style: italic;
+  font-size: 12px !important;
+}
+
+.listview .list_header .list_header_item {
+  display: table-cell;
+}
+
+.listview .list_header .list_header_item.sortable {
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-image: url("/static/img/prototype/table_order_indicator.png");
+}
+
+.listview .list_header .list_header_item.active {
+  background-color: #cccccc;
+  background-color: #fafafa;
+  background-position: right center;
+  background-repeat: no-repeat;
+}
+
+.listview .list_header .list_header_item.active.ascending {
+  background-image: url("/static/img/prototype/table_order_asc.png");
+}
+
+.listview .list_header .list_header_item.active.descending {
+  background-image: url("/static/img/prototype/table_order_desc.png");
+}
+
+.listview .list_header .list_header_item a {
+  color: #666666;
+}
+
+
+.listview.container .list_body {
+  display: table-row-group;
+}
+
+.listview.container .list_body .list_body_row {
+  display: table-row;
+  background: white;
+  transition-property: background;
+  transition-duration: 0.3s;
+  /* Status dependant styleing */
+  /* Unpublished, grey text */
+  /* Owner */
+}
+
+.listview.container .list_body .list_body_row a > small {
+  color: #5a5a5a;
+  font-weight: normal;
+}
+
+.listview.container .list_body .list_body_row.selection {
+  background-color: #e2d7f9;
+}
+
+.listview.container .list_body .list_body_row.selection li.indicator {
+  background-image: url(/static/img/base/listview.row.selection.bg.png);
+  background-repeat: no-repeat;
+  background-position: 0 -16px;
+}
+
+.listview.container .list_body .list_body_row.selection.hover {
+  background-color: #cbe5cb;
+}
+
+.listview.container .list_body .list_body_row.locked {
+  background-image: url(/static/img/prototype/list_closed_bg.png);
+  background-color: #ffe1d2;
+}
+
+.listview.container .list_body .list_body_row.hover {
+  background-color: #bcf5e0;
+}
+
+.listview.container .list_body .list_body_row.unpublished .list_body_item a {
+  color: #666666;
+}
+
+.listview.container .list_body .list_body_row.owner {
+  background-image: url(/static/img/prototype/list_closed_bg.png);
+}
+
+.listview.container .list_body .list_body_item {
+  vertical-align: top !important;
+  display: table-cell;
+  border-bottom: 4px solid whitesmoke;
+  color: #666666;
+}
+
+.listview.container .list_body .list_body_item .small {
+  line-height: 18px;
+}
+
+.listview.container .list_body .list_body_item ul.small li {
+  font-weight: normal;
+  font-size: 90%;
+}
+
+.listview.container .list_body .list_body_item ul.small li.highlight {
+  text-transform: uppercase;
+}
+
+.listview.container .list_body .list_body_item ul.small li.highlight small {
+  color: #00bb73;
+}
+
+
+.listview.container span.badge {
+  height: 10px;
+  margin-top: 3px;
+  background: orange;
+  display: block;
+  padding: 0 3px;
+  color: white;
+  font-size: 9px;
+  line-height: 10px;
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+
+.listview.container span.badge:first-child {
+  margin-right: 12px;
+}
+
+.listview.container span.badge.top {
+  background: #00bb73;
+  color: white;
+}
+
+.listview.container span.badge.flop {
+  background: red;
+}
+
+
+.listview.container.l span.badge:first-child {
+  margin-right: 0px;
+}
+
+.listview.container.l .image-container {
+  height: 100%;
+  background: white;
+  white-space: nowrap;
+  text-align: center;
+  overflow: hidden;
+}
+
+.listview.container.l .image-container .padder {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.listview.container.l .image-container img {
+  margin-left: -3px;
+  max-width: 197px;
+  max-height: 197px;
+  vertical-align: middle;
+}
+
+
+.listview.footer {
+  border-top: none;
+  margin: 0;
+  padding: 8px 2px 8px 5px;
+  font-size: 90%;
+  clear: both;
+}
+
+.listview.footer .ipp li {
+  padding-left: 7px;
+}
+
+.listview.footer .ipp a.active {
+  color: #00bb73;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.listview.footer .control_selection span {
+  color: #999999;
+}
+
+.listview.container {
+  /* releases */
+  /* playlists */
+  /* artists */
+  /* labels */
+  /* medias */
+  /* overide if list-view is displayed inside a detail-view */
+  /* transmissions */
+  /* downloads */
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.listview.container .list_body_item ul.properties, .listview.container .list_body_row ul.properties {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}
+
+.listview.container .list_body_item ul.properties i, .listview.container .list_body_row ul.properties i {
+  opacity: 0.5;
+}
+
+.listview.container .list_body_item ul.action li > a.disabled, .listview.container .list_body_item ul.action li > a.disabled:hover, .listview.container .list_body_row ul.action li > a.disabled, .listview.container .list_body_row ul.action li > a.disabled:hover {
+  color: #a5a5a5 !important;
+  background: transparent !important;
+  cursor: not-allowed;
+}
+
+.listview.container .list_body_item ul.action li > a.disabled i, .listview.container .list_body_item ul.action li > a.disabled:hover i, .listview.container .list_body_row ul.action li > a.disabled i, .listview.container .list_body_row ul.action li > a.disabled:hover i {
+  color: #a5a5a5 !important;
+}
+
+.listview.container .list_body_item ul.action li.square, .listview.container .list_body_row ul.action li.square {
+  padding: 2px 0 0 1px;
+}
+
+.listview.container .list_body_item ul.action li.square > a, .listview.container .list_body_row ul.action li.square > a {
+  border-radius: 1px;
+  text-align: center;
+  padding: 0 0px 2px 2px;
+  color: #00bb73 !important;
+  text-decoration: none !important;
+}
+
+.listview.container .list_body_item ul.action li.square:hover > a, .listview.container .list_body_row ul.action li.square:hover > a {
+  background: #00bb73;
+  color: white !important;
+}
+
+.listview.container .list_body_item ul.action.secondary li, .listview.container .list_body_row ul.action.secondary li {
+  padding: 2px 4px 0 1px;
+}
+
+.listview.container .list_body_item ul.action.secondary li > a, .listview.container .list_body_row ul.action.secondary li > a {
+  text-align: center;
+  padding: 0 0px 2px 2px;
+  color: #6633cc !important;
+  text-decoration: none !important;
+}
+
+.listview.container .list_body_item ul.action.secondary li:hover > a, .listview.container .list_body_row ul.action.secondary li:hover > a {
+  color: #00bb73 !important;
+  background: transparent;
+}
+
+.listview.container.s {
+  font-size: 90%;
+}
+
+.listview.container.s .list_body_item, .listview.container.s .list_header_item {
+  padding: 3px 4px 4px;
+}
+
+.listview.container.s .c1 {
+  width: 42px;
+}
+
+.listview.container .list_body_row {
+  height: 40px;
+}
+
+.listview.container .list_body_item.action {
+  padding: 4px 0 0 0;
+}
+
+.listview.container .list_body_item.action div.wrapper div {
+  width: 16px;
+}
+
+.listview.container .list_body_item.action div.wrapper div ul li {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.listview.container .list_body_item.action div.wrapper div ul li a {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.listview.container .list_body_item.action div.wrapper div ul li a:hover {
+  background-position: 0 -16px;
+}
+
+.listview.container .list_body_item.action div.wrapper div ul li.play a {
+  background-image: url(/static/img/base/listview.row.play.button.png);
+}
+
+.listview.container .list_body_item.action div.wrapper div ul li.download a {
+  background-image: url(/static/img/base/listview.row.download.bg.png);
+}
+
+.listview.container .list_body_item.action div.wrapper div ul li.basket a {
+  background-image: url(/static/img/base/listview.row.basket.bg.png);
+}
+
+.listview.container .list_body_item a span.filter {
+  padding: 0 0 0 12px;
+  /*background-color: #00ffff */
+  background-image: url(/static/img/base/listview.filter.png);
+  background-repeat: no-repeat;
+  font-size: 9px;
+  vertical-align: top;
+  color: #999999;
+}
+
+.listview.container .list_body_item.image_center_bg {
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.listview.container .list_body ul {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.listview.container.s .c1 {
+  width: 72px;
+  background-position: 28px center;
+}
+
+.listview.container.s .c1.list_body_item {
+  background-repeat: no-repeat;
+}
+
+.listview.container.s .c1 img {
+  width: 62px;
+  height: 36px;
+}
+
+.listview.container.s .c1 ul li {
+  display: block;
+  width: 16px;
+  padding: 0px 0 0 0px;
+}
+
+.listview.container.s .c1 ul li a {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.listview.container.s .c1 ul li a:hover {
+  background-position: 0 -16px;
+}
+
+.listview.container.s .c1 ul li.play a {
+  background-image: url(/static/img/base/listview.row.play.button.png);
+}
+
+.listview.container.s .c1 ul li.play span {
+  background-image: url(/static/img/base/listview.row.play.button.disabled.png);
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.listview.container.s .playing ul li.play a {
+  background-position: 0 -16px;
+}
+
+.listview.container.s .c2 {
+  width: auto;
+}
+
+.listview.container.s .c3 {
+  /*width: 64px */
+}
+
+.listview.container.s .c4 {
+  width: 126px;
+}
+
+.listview.container.s .c5 {
+  width: 78px;
+}
+
+.listview.container.s .c6 {
+  width: 60px;
+}
+
+.listview.container.s .list_body_item.c6 {
+  text-align: right;
+  padding-right: 24px;
+}
+
+.listview.container.s .c7 {
+  width: 80px;
+}
+
+.listview.container.s .c8 {
+  width: 48px;
+}
+
+.listview.container.releases.s .c1.list_body_item {
+  background-image: url(/static/img/base/defaults/listview.release.xl.png);
+  background-size: 36px 36px;
+}
+
+.listview.container.releases.s .c2 {
+  width: 300px;
+}
+
+.listview.container.releases.s .c3 {
+  width: 50px;
+  padding-right: 10px;
+}
+
+.listview.container.releases.s .c4 {
+  width: 160px;
+}
+
+.listview.container.releases.s .c5 {
+  width: 68px;
+  text-align: center;
+}
+
+.listview.container.releases.s .c5 .iconset-license {
+  position: relative;
+  top: 10px;
+  font-size: 14px;
+}
+
+.listview.container.releases.s .c6 {
+  width: 70px;
+  padding-right: 12px;
+}
+
+.listview.container.releases.s .c7 {
+  width: 70px;
+}
+
+.listview.container.releases.s .c8 {
+  width: 40px;
+}
+
+.listview.container.playlists.s .c1.list_body_item, .listview.container.playlist.s .c1.list_body_item {
+  background-image: url(/static/img/base/defaults/listview.playlist.s.png);
+  background-size: 36px 36px;
+}
+
+.listview.container.playlists.s .c8, .listview.container.playlist.s .c8 {
+  width: 40px;
+}
+
+.listview.container.artists.s .c1.list_body_item {
+  background-image: url(/static/img/base/defaults/listview.artist.xl.png);
+  background-size: 36px 36px;
+}
+
+.listview.container.artists.s .c4 .relations > ul {
+  position: relative;
+  top: 10px;
+}
+
+.listview.container.artists.s .c4 .relations > ul li {
+  padding-right: 7px;
+}
+
+.listview.container.artists.s .c4 .relations > ul li a > span.service {
+  display: none;
+}
+
+.listview.container.artists.s .c5 {
+  width: 120px;
+}
+
+.listview.container.artists.s .c6 {
+  width: 40px;
+  padding-right: 0px;
+}
+
+.listview.container.labels.s .c6 {
+  width: 30px;
+  padding-right: 0px;
+}
+
+.listview.container.labels.m .c1 {
+  background-position: 5px 5px;
+  background-position: center;
+  background-image: url(/static/img/base/defaults/listview.artist.xl.png);
+  background-size: 53px auto;
+}
+
+.listview.container.medias.s .c1 {
+  width: 40px;
+}
+
+.listview.container.medias.s .c1 li {
+  float: left;
+}
+
+.listview.container.medias.s .c2 small.type, .listview.container.medias.s .c2 small.tempo {
+  font-weight: normal;
+  font-size: 90%;
+}
+
+.listview.container.medias.s .c3 {
+  width: auto;
+}
+
+.listview.container.medias.s .c4 {
+  width: 100px;
+}
+
+.listview.container.medias.s .c5 {
+  width: 68px;
+  text-align: center;
+}
+
+.listview.container.medias.s .c5 ul > li {
+  width: 24px;
+  padding-top: 10px;
+}
+
+.listview.container.medias.s .c5 ul > li a {
+  color: #333333;
+}
+
+.listview.container.medias.s .c5 ul > li a:hover {
+  text-decoration: none;
+  color: #6633cc;
+}
+
+.listview.container.medias.s .c5 ul > li i {
+  font-size: 145%;
+}
+
+.listview.container.medias.s .c6 {
+  width: 40px;
+  padding-right: 0px;
+}
+
+.listview.container.medias.s .c7 {
+  width: 30px;
+}
+
+.listview.container.medias.inner.s {
+  margin-top: 20px;
+}
+
+.listview.container.medias.inner.s .c1 {
+  width: 64px;
+}
+
+.listview.container.medias.inner.s .c1 .tracknumber {
+  text-align: right;
+  font-weight: bold;
+  padding: 2px 9px 0 0;
+}
+
+.listview.container.medias.inner.s .c3 {
+  width: 200px;
+}
+
+.listview.container.medias.inner.s .list_body_row:first-child .list_body_item {
+  border-top: 1px solid #dddddd;
+}
+
+.listview.container.medias.inner.s .list_body_row .list_body_item {
+  padding: 4px 2px 0px 2px;
+  vertical-align: middle;
+}
+
+.listview.container .item.timestamp .c1 {
+  width: 90px !important;
+}
+
+.listview.container .item.timestamp .c1 .timestamp {
+  width: 36px;
+  float: left;
+  font-weight: bold;
+  padding: 2px 0 0 4px;
+}
+
+.listview.container .item.hidden-future {
+  display: table-row;
+  background: #efefef;
+}
+
+.listview.container .item.hidden-future .inner {
+  display: table-cell;
+  border-bottom: 1px solid #dddddd;
+  height: 36px;
+}
+
+.listview.container .item.hidden-future .inner.icon i {
+  padding-left: 15px;
+  font-size: 200%;
+  line-height: 33px;
+  color: #aaaaaa;
+}
+
+.listview.container.transmissions.s .c2 {
+  width: auto;
+}
+
+.listview.container.transmissions.s .c3 {
+  width: 80px;
+}
+
+.listview.container.transmissions.s .c4 {
+  width: 180px;
+}
+
+.listview.container.transmissions.s .c5 {
+  width: 80px;
+}
+
+.listview.container.transmissions.s .list_body_item.c3 {
+  text-align: right;
+  padding-right: 24px;
+}
+
+.listview.container.downloads.s .list_body_row {
+  height: 22px;
+}
+
+.listview.container.downloads.s .c2 {
+  width: auto;
+}
+
+.listview.container.downloads.s .c3 {
+  width: 80px;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.listview.container.downloads.s .c4 {
+  width: auto;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.listview.container.downloads.s .c5 {
+  width: 80px;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.listview.container.downloads.s .c6 {
+  width: 80px;
+  text-align: right;
+  padding-right: 8px;
+}
+
+.listview.container.s .playing, .listview.container.l .playing {
+  background-color: #bcf5e0;
+}
+
+/**********************************************************
+ * Styles Medium
+ ********************************************************** */
+
+.listview.container.releases.m .c1.list_body_item {
+  background-image: url(/static/img/base/defaults/listview.release.xl.png);
+  background-size: 54px 54px;
+}
+
+.listview.container.artists.m .c1.list_body_item {
+  background-image: url(/static/img/base/defaults/listview.artist.xl.png);
+  background-size: 54px 54px;
+}
+
+.listview.container.artists.m .c2 {
+  width: 214px;
+}
+
+.listview.container.labels.m .c2 {
+  width: 260px;
+}
+
+.listview.container.labels.m .c3
+.relations > ul {
+  position: relative;
+  top: 16px;
+}
+
+.listview.container.labels.m .c3
+.relations > ul li {
+  padding-right: 7px;
+}
+
+.listview.container.labels.m .c3
+.relations > ul li a > span.service {
+  display: none;
+}
+
+.listview.container .c4 {
+  position: relative;
+}
+
+.listview.container .c4 ul.tags {
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  opacity: 0.88;
+  padding-bottom: 2px;
+}
+
+.listview.container .c4 ul.tags li {
+  margin: 2px 2px 0 0;
+  padding: 0 4px;
+  line-height: 14px;
+  background: #333333;
+  color: white;
+  border: 1px solid #343434;
+  float: right;
+  text-transform: uppercase;
+}
+
+.listview.container .c4 ul.tags li.active {
+  background: #00bb73;
+  border-color: #00bb73;
+  color: white;
+}
+
+.listview.container .c5 {
+  width: 40px;
+}
+
+.listview.playlist.m .c1.list_body_item {
+  background-image: url(/static/img/base/defaults/listview.playlist.xl.png);
+  background-size: 54px 54px;
+}
+
+.listview.profile.m .c1.list_body_item {
+  background-image: url(/static/img/base/defaults/listview.profile.xl.png);
+  background-size: 54px 54px;
+}
+
+.listview.profile.m .c3 {
+  width: 178px;
+}
+
+.listview.profile.m .c4 {
+  position: relative;
+}
+
+.listview.profile.m .c4 ul.tags {
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  opacity: 0.88;
+  padding-bottom: 2px;
+}
+
+.listview.profile.m .c4 ul.tags li {
+  margin: 2px 2px 0 0;
+  padding: 0 4px;
+  line-height: 14px;
+  background: #333333;
+  color: white;
+  border: 1px solid #343434;
+  float: right;
+  text-transform: uppercase;
+}
+
+.listview.profile.m .c4 ul.tags li.active {
+  background: #00bb73;
+  border-color: #00bb73;
+  color: white;
+}
+
+.listview.m {
+  font-size: 90%;
+}
+
+.listview.m .list_body_item, .listview.m .list_header_item {
+  padding: 2px;
+}
+
+.listview.m .c1 {
+  width: 84px;
+  background-position: 28px 5px;
+  height: 58px;
+}
+
+.listview.m .c1 img {
+  width: 84px;
+  height: 58px;
+}
+
+.listview.m .c1 ul li {
+  display: block;
+  width: 16px;
+  padding: 2px 0 0 0px;
+}
+
+.listview.m .c1 ul li a {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.listview.m .c1 ul li a:hover {
+  background-position: 0 -16px;
+}
+
+.listview.m .c1 ul li.play a {
+  background-image: url(/static/img/base/listview.row.play.button.png);
+}
+
+.listview.m .c1 ul li.play span {
+  background-image: url(/static/img/base/listview.row.play.button.disabled.png);
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+  background-repeat: no-repeat;
+}
+
+.listview.m .playing ul li.play a {
+  background-position: 0 -16px;
+}
+
+.listview.m .c2 {
+  width: 240px;
+}
+
+.listview.m .c2.slim {
+  width: 218px;
+}
+
+.listview.m .c3 {
+  width: 78px;
+}
+
+.listview.m .c3.external {
+  padding-top: 6px;
+  width: 100px;
+}
+
+.listview.m .c4 {
+  width: auto;
+}
+
+/**********************************************************
+ * Styles Large
+ ***********************************************************/
+
+*
+*
+.listview.container.releases.l .list_body_row.item {
+  background-image: url(/static/img/base/defaults/listview.release.xl.png);
+}
+
+*
+*
+.listview.container.releases.l .list_body_row.item .iconset-license {
+  font-size: 14px;
+}
+
+*
+*
+.listview.container.artists.l .list_body_row.item {
+  background-image: url(/static/img/base/defaults/listview.artist.xl.png);
+}
+
+*
+*
+.listview.container.profile.l .list_body_row.item {
+  background-image: url(/static/img/base/defaults/listview.artist.xl.png);
+}
+
+*
+*
+.listview.container.playlist.l .list_body_row.item {
+  background-image: url(/static/img/base/defaults/listview.playlist.xl.png);
+}
+
+*
+*
+.listview.container.playlist.l .list_body_row.item .wrapper_icon ul.indicator li {
+  padding: 2px 4px 0 0;
+  font-size: 200%;
+}
+
+
+.listview.container.l {
+  display: block;
+  font-size: 90%;
+}
+
+.listview.container.l .list_body_item, .listview.container.l .list_header_item {
+  padding: 2px 5px;
+}
+
+.listview.container.l .list_body_row.item {
+  background-size: 197px 197px;
+}
+
+.listview.container.l div.list_body {
+  display: block;
+  /* actually not a real 'row' in this style */
+}
+
+.listview.container.l div.list_body div.break_line {
+  height: 55px;
+}
+
+.listview.container.l div.list_body div.list_body_row {
+  display: block;
+  float: left;
+  width: 174px;
+  height: 250px;
+  margin: 14px 5px 0 0;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  border: 1px solid #efefef;
+  position: relative;
+  /* Alternative Play icon */
+  /* Adjustable info panel */
+}
+
+.listview.container.l div.list_body div.list_body_row:nth-child(4n) {
+  margin: 14px 0 0 0;
+}
+
+.listview.container.l div.list_body div.list_body_row.selection div.wrapper_info, .listview.container.l div.list_body div.list_body_row.selection div.wrapper_action {
+  background-color: #e2d7f9;
+}
+
+.listview.container.l div.list_body div.list_body_row.hover {
+  border-bottom: none;
+}
+
+.listview.container.l div.list_body div.list_body_row.selection.hover {
+  background-color: #e2d7f9;
+}
+
+.listview.container.l div.list_body div.list_body_row.playing ul li.play a {
+  background-position: 0 -16px;
+}
+
+.listview.container.l div.list_body div.list_body_row div.list_body_item {
+  display: block;
+  border-bottom: none;
+}
+
+.listview.container.l div.list_body div.list_body_row div.list_body_item.action .wrapper {
+  width: 36px;
+  padding: 0 0 0 150px;
+}
+
+.listview.container.l div.list_body div.list_body_row .wrapper_icon {
+  position: absolute;
+  left: 51px;
+  top: 73px;
+  padding: 4px;
+  border-radius: 5px;
+  z-index: 999;
+}
+
+.listview.container.l div.list_body div.list_body_row .wrapper_icon ul li {
+  float: left;
+}
+
+.listview.container.l div.list_body div.list_body_row .wrapper_icon ul li a {
+  display: block;
+  padding: 4px 8px 3px;
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.listview.container.l div.list_body div.list_body_row .wrapper_icon ul li i {
+  font-size: 32px;
+}
+
+.listview.container.l div.list_body div.list_body_row.hover .wrapper_icon {
+  background: rgba(51, 51, 51, 0.71);
+}
+
+.listview.container.l div.list_body div.list_body_row.hover .wrapper_icon ul li a {
+  color: white !important;
+  background: transparent !important;
+}
+
+.listview.container.l div.list_body div.list_body_row.hover .wrapper_icon ul li a:hover {
+  background: transparent;
+  color: #00bb73 !important;
+}
+
+.listview.container.l div.list_body div.list_body_row .spacer {
+  position: relative;
+  cursor: pointer;
+  height: 151px;
+  height: 195px;
+  -webkit-transition-property: height;
+  -webkit-transition-duration: 0.1s;
+}
+
+.listview.container.l div.list_body div.list_body_row .spacer.license {
+  background-position: right bottom;
+}
+
+.listview.container.l div.list_body div.list_body_row .spacer ul.tags {
+  position: absolute;
+  bottom: 0px;
+  right: 0;
+  opacity: 0.88;
+  padding-bottom: 2px;
+}
+
+.listview.container.l div.list_body div.list_body_row .spacer ul.tags li {
+  margin: 2px 2px 0 0;
+  padding: 0 4px;
+  line-height: 14px;
+  background: #333333;
+  color: white;
+  border: 1px solid #343434;
+  float: right;
+  text-transform: uppercase;
+}
+
+.listview.container.l div.list_body div.list_body_row .spacer ul.tags li.active {
+  background: #00bb73;
+  border-color: #00bb73;
+}
+
+.listview.container.l div.list_body div.list_body_row.hover ul.tags {
+  position: absolute;
+  opacity: 1;
+  background-color: #333333;
+  -webkit-transition-property: opacity, background-color;
+  -webkit-transition-duration: 0.1s;
+}
+
+.listview.container.l div.list_body div.list_body_row.hover ul.tags li {
+  border: 1px solid #626262;
+}
+
+.listview.container.l div.list_body div.list_body_row .wrapper_info ul li {
+  /*padding: 2px 2px 2px 5px */
+}
+
+.listview.container.l div.list_body div.list_body_row .wrapper_info .wrapper_inner {
+  height: 60px;
+  overflow: hidden;
+}
+
+.listview.container.l div.list_body div.list_body_row .wrapper_action li {
+  float: right;
+}
+
+.listview.container.l div.list_body div.marker {
+  position: absolute;
+  top: 10px;
+  right: -30px;
+}
+
+.listview.container.l div.list_body div.marker span {
+  text-transform: uppercase;
+  background: white;
+  display: block;
+  text-align: center;
+  -webkit-box-shadow: 2px 2px 4px 1px rgba(51, 51, 51, 0.35);
+  -moz-box-shadow: 2px 2px 4px 1px rgba(51, 51, 51, 0.35);
+  box-shadow: 2px 2px 4px 1px rgba(51, 51, 51, 0.35);
+  width: 100px;
+  padding: 2px 0;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.listview.container.l div.list_body div.marker span a {
+  color: black;
+}
+
+.listview.container.l div.list_body div.marker.promo span {
+  background: white;
+}
+
+
+.listview.container.actions table tr:first-child > td,
+.listview.container.import table tr:first-child > td {
+  border-top: none;
+}
+
+.listview.container.actions table tr.day-separator > td,
+.listview.container.import table tr.day-separator > td {
+  padding: 10px;
+  text-align: center;
+  text-transform: capitalize;
+  color: #5a5a5a;
+  font-style: italic;
+  background: none;
+}
+
+
+/* highlighter */
+
+.listview.container .list_body span.highlight {
+  background-color: #bcf5e0;
+  color: #00bb73;
+}
+
+
+.left {
+  float: left;
+}
+
+
+.right {
+  float: right;
+}
+
+
+.clear {
+  clear: both;
+}
+
+
+ul.horizontal li {
+  float: left;
+}
+
+
+.dl-horizontal dt {
+  float: left;
+  clear: left;
+  width: 120px;
+}
+
+.dl-horizontal dd {
+  margin-left: 130px;
+}
+
+
+/* mod nav */
+
+#modnav ul {
+  margin: 0 0 10px;
+  clear: both;
+}
+
+#modnav li {
+  height: 28px;
+  float: left;
+}
+
+#modnav li a {
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #666666;
+  text-decoration: none;
+  padding: 0px 7px 0px 7px;
+  border-right: 1px solid #999999;
+  letter-spacing: 1px;
+}
+
+#modnav li:last-child a {
+  border-right: none;
+}
+
+#modnav li.on a, #modnav li.selected a {
+  color: #00bb73;
+  text-decoration: none;
+  padding: 0px 7px 0px 7px;
+}
+
+#modnav li.on:hover, #modnav li.selected:hover {
+  color: #00bb73;
+}
+
+
+#modnavright a {
+  color: #666666;
+  text-decoration: none;
+  padding: 0px 7px 0px 7px;
+  border-right: 1px solid #999999;
+}
+
+#modnavright a.on {
+  color: #00bb73;
+  text-decoration: none;
+  padding: 0px 7px 0px 7px;
+}
+
+/* codntent nav */
+
+.contentnav {
+  margin: 0px 250px 6px 0px;
+}
+
+.contentnav li {
+  list-style: none;
+  float: left;
+}
+
+.contentnav a {
+  color: #666666;
+  text-decoration: none;
+  padding: 0px 7px 0px 7px;
+  border-right: 1px solid #999999;
+}
+
+.contentnav a.on {
+  color: #00bb73;
+  text-decoration: none;
+  padding: 0px 7px 0px 7px;
+}
+
+/* codntentv */
+
+#splitpane-sidebar {
+  float: right;
+  width: 225px;
+}
+
+
+#splitpane-content {
+  border-top: 1px solid #aaaaaa;
+  /*margin-right: 250px */
+  margin-right: 0;
+  position: relative;
+}
+
+
+#pane-content {
+  border-top: 1px solid #aaaaaa;
+  position: relative;
+}
+
+
+#modaction {
+  border-top: 1px solid #aaaaaa;
+  margin-bottom: 23px;
+}
+
+#modaction div {
+  padding: 3px 0px 2px 19px;
+  background-image: url(/static/img/prototype/action.png);
+  background-repeat: no-repeat;
+  background-position: 0px 3px;
+  border-bottom: 1px solid #cccccc;
+  color: #7733cc;
+}
+
+#modaction div:hover {
+  cursor: pointer;
+  background-color: #e2d7f9;
+}
+
+#modaction a {
+  text-decoration: none;
+}
+
+#modaction .disabled {
+  cursor: wait;
+  color: #bbbbbb;
+  background-image: url(/static/img/prototype/action_off.png);
+}
+
+#modaction .disabled:hover {
+  cursor: default;
+  background-color: white;
+}
+
+#modaction .disabled a {
+  color: #bbbbbb;
+  cursor: wait;
+}
+
+
+
+/* ---------- reseting tags ---------- */
+
+ul, li, table, form, p, h1, h2, h3 {
+  margin: 0px;
+  padding: 0px;
+  text-indent: 0px;
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+ul.text {
+  margin: 8px 0px 10px 0px !important;
+  padding: 0px !important;
+}
+
+ul.text li {
+  margin: 0px !important;
+  padding: 0px 180px 0px 19px;
+  background: url(/static/img/prototype/list_img.png) no-repeat;
+}
+
+
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+table td {
+  vertical-align: top;
+}
+
+
+img {
+  border: none;
+}
+
+
+input, textarea {
+  margin: 0px;
+  padding: 0px;
+}
+
+
+.__date {
+  border: 1px solid #dddddd;
+  margin-top: 5px;
+  padding: 3px 3px 3px 3px;
+  font-size: 10px;
+  text-align: center;
+  background-color: whitesmoke;
+}
+
+.__date b {
+  font-size: 15px;
+}
+
+
+/* TOOLTIP ---------------------------------- */
+
+#tooltip {
+  display: none;
+  position: absolute;
+  background: magenta;
+  padding: 5px;
+}
+
+
+.activity {
+  margin: 0px 0px 10px 0px;
+  border-bottom: 1px dotted #cccccc;
+}
+
+.activity h1 {
+  font-size: 13px;
 }
