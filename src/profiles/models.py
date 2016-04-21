@@ -3,6 +3,7 @@ from django.utils.encoding import python_2_unicode_compatible
 import uuid
 from django.db import models
 from django.conf import settings
+from django.core.urlresolvers import reverse
 try:
     from django.utils.encoding import force_text
 except ImportError:
@@ -30,6 +31,9 @@ class BaseProfile(models.Model):
 
     def __str__(self):
         return force_text(self.user.email)
+
+    def get_absolute_url(self):
+         return reverse("profiles:show", kwargs={'slug': self.slug})
 
 
 @python_2_unicode_compatible

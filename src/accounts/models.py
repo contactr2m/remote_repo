@@ -5,6 +5,8 @@ from django.core.mail import send_mail
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.utils.http import urlquote
+from guardian.mixins import GuardianUserMixin
 
 
 class EmailUserManager(BaseUserManager):
@@ -139,6 +141,9 @@ class AbstractEmailUser(AbstractBaseUser, PermissionsMixin):
     def natural_key(self):
         return (self.email,)
 
+    def get_absolute_url(self):
+        return "/users/%s/" % urlquote(self.email)
+
 
 class EmailUser(AbstractEmailUser):
 
@@ -149,3 +154,7 @@ class EmailUser(AbstractEmailUser):
 
     class Meta(AbstractEmailUser.Meta):
         swappable = 'AUTH_USER_MODEL'
+
+
+def get_anonymous_user_instance(User):
+    return EmailUser(email="Anonymous@Anonymous.com", first_name="Anonymous", last_name="User")

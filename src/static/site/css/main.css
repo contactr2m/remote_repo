@@ -3,6 +3,7 @@
 html, body{
     height:100%;		/* For full height images */
     margin: 0;
+    background-color: #f5f5f5;
 }
 
 .starter-template {
@@ -1822,3 +1823,302 @@ input, textarea {
 .activity h1 {
   font-size: 13px;
 }
+
+
+/* Item view -----------------------------------*/
+.iteminfo {
+  padding: 0;
+  font-size: 90%;
+  line-height: 11px;
+  text-align: left; 
+}
+.iteminfo .image {
+    text-align: right;
+    height: 170px; 
+  }
+.iteminfo .image .align {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle; 
+}
+.iteminfo .image .align a, .iteminfo .image .align img {
+        vertical-align: middle;
+        width: 170px;
+        max-height: 170px; 
+}
+.iteminfo .image img {
+      width: 170px;
+      max-height: 170px; 
+}
+.iteminfo .rating {
+    margin-top: 4px; 
+}
+.iteminfo .container_content dl {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    width: 100%;
+    margin: 0 0 7px; 
+}
+.iteminfo .container_content dl.contact div p {
+      line-height: 140%;
+      padding: 0 0 11px !important; 
+}
+.iteminfo .container_content dl span.tag {
+      margin: 2px 2px 0 0;
+      padding: 0 4px;
+      background: #333;
+      color: white;
+      border: 1px solid #333;
+      text-transform: uppercase; 
+}
+.iteminfo .container_content dl.license p {
+      padding: 4px 0 0 0 !important; 
+}
+.iteminfo .container_content dl.license img {
+      height: 10px; 
+}
+.iteminfo .container_content dl dd.relations li {
+      padding: 0 3px 0 0;
+      margin: 0 3px 0 0;
+      float: left; 
+}
+.iteminfo .container_content dl dd.relations li span.service {
+        display: none; 
+}
+.iteminfo .container_content dl dd.relations li a {
+        color: #5a5a5a;
+        text-decoration: none; 
+}
+.iteminfo .container_content dl dd.relations li a:hover {
+          color: #6633CC; 
+}
+.iteminfo .container_content dl dd.relations li a i {
+          font-size: 180%;
+          line-height: 17px; 
+}
+.iteminfo .container_content dl.links.external dd {
+      float: none; 
+}
+.iteminfo .container_content li {
+    padding: 0;
+    margin: 0; 
+}
+.iteminfo .container_content p {
+    color: #666666; 
+}
+.iteminfo .container_content p.label {
+      width: 70px;
+      color: #000000; 
+}
+.iteminfo .container_image {
+    padding: 14px; }
+.iteminfo .container_image a {
+      display: block;
+      border: 1px solid #F5F5F5; 
+}
+.iteminfo .container_image a:hover {
+        border: 1px solid #00bb73; 
+}
+.iteminfo .item_menu h3 {
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 140%; 
+}
+.iteminfo .item_menu ul {
+    margin: 0px; 
+}
+
+/*-------------------------Item detail view-----------------------------*/
+
+.item_detail section.shaded {
+  background-color: #fff; }
+
+.item_detail section #aplayer_detail {
+  height: 128px;
+  position: relative;
+  padding-left: 10px;
+  margin-top: 10px; }
+  .item_detail section #aplayer_detail p.notice {
+    padding: 50px 0;
+    text-align: center; }
+
+.item_detail section #aplayer_detail .item .overlay {
+  position: absolute;
+  z-index: 10;
+  top: 20px; }
+  .item_detail section #aplayer_detail .item .overlay.primary {
+    left: 20px;
+    width: 110px; }
+  .item_detail section #aplayer_detail .item .overlay.secondary {
+    right: 20px; }
+
+.item_detail section #aplayer_detail .item ul.action {
+  background-color: transparent;
+  clear: both;
+  display: inline-block;
+  padding: 4px;
+  border-radius: 4px;
+  opacity: 0.25;
+  transition: opacity 0.2s; }
+  .item_detail section #aplayer_detail .item ul.action li {
+    float: left;
+    margin-right: 10px; }
+  .item_detail section #aplayer_detail .item ul.action a {
+    color: #fff; }
+    .item_detail section #aplayer_detail .item ul.action a:hover {
+      color: #00bb73;
+      text-decoration: none; }
+  .item_detail section #aplayer_detail .item ul.action i {
+    font-size: 32px; }
+
+.item_detail section #aplayer_detail .item.hover ul.action {
+  opacity: 1.0; }
+
+.item_detail section.description {
+  font-size: 13px;
+  line-height: 22px; }
+
+.item_detail .item_inner section h2 {
+  font-size: 16px;
+  color: #a5a5a5; }
+
+.item_detail .item_inner section .s .list_body_row.item:first-child .list_body_item {
+  border-top: 1px solid #dddddd; }
+
+.item_detail .item_inner section.top, .item_detail .item_inner section.flop, .item_detail .item_inner section.contribution {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.description {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.tracklist {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.profile {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.activities {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.broadcasts {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.lyrics {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.uploads {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.emissions {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.soundcloud {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.distribution {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.following {
+  margin-top: 15px; }
+  .item_detail .item_inner section.following table.follows {
+    width: 100%; }
+    .item_detail .item_inner section.following table.follows .ctype {
+      width: 100px; }
+    .item_detail .item_inner section.following table.follows .actions {
+      text-align: right;
+      width: 120px; }
+    .item_detail .item_inner section.following table.follows tr.hover > td {
+      background-color: #BCF5E0; }
+  .item_detail .item_inner section.following table.follows .actions a {
+    width: 110px;
+    display: block;
+    text-align: left;
+    padding: 2px 4px 0px 4px;
+    text-decoration: none; }
+    .item_detail .item_inner section.following table.follows .actions a:hover span > i {
+      padding-right: 6px; }
+    .item_detail .item_inner section.following table.follows .actions a .start-following {
+      display: inline; }
+    .item_detail .item_inner section.following table.follows .actions a .stop-following {
+      display: none; }
+    .item_detail .item_inner section.following table.follows .actions a.following .start-following {
+      display: none; }
+    .item_detail .item_inner section.following table.follows .actions a.following .stop-following {
+      display: inline; }
+    .item_detail .item_inner section.following table.follows .actions a > span.start-following {
+      color: #6633CC; }
+      .item_detail .item_inner section.following table.follows .actions a > span.start-following:hover {
+        color: #47248f; }
+    .item_detail .item_inner section.following table.follows .actions a > span.stop-following {
+      color: #777777; }
+      .item_detail .item_inner section.following table.follows .actions a > span.stop-following:hover {
+        color: #333333; }
+
+.item_detail .item_inner section.votes {
+  margin-top: 15px; }
+  .item_detail .item_inner section.votes .listing {
+    min-height: 50px; }
+    .item_detail .item_inner section.votes .listing .span3 {
+      width: 256px;
+      margin-left: 27px; }
+    .item_detail .item_inner section.votes .listing .item {
+      min-height: 50px;
+      box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.1);
+      padding: 10px 10px 10px 90px;
+      margin-bottom: 10px;
+      background-size: 70px !important;
+      background-repeat: no-repeat !important;
+      cursor: pointer;
+      background: #fff; }
+      .item_detail .item_inner section.votes .listing .item.ctype {
+        background: transparent;
+        text-align: center; }
+      .item_detail .item_inner section.votes .listing .item.hover {
+        background: #BCF5E0; }
+
+.item_detail .item_inner section.history {
+  margin-top: 15px; }
+  .item_detail .item_inner section.history div.item {
+    border-bottom: 1px solid #dddddd; }
+    .item_detail .item_inner section.history div.item p {
+      color: #5a5a5a;
+      font-size: 90%; }
+
+.item_detail .item_inner section.appearance {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.video {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.statistics {
+  margin-top: 15px; }
+
+.item_detail .item_inner section.media {
+  margin-top: 15px; }
+
+/*-------------------------Page header--------------------------------------*/
+.page-header {
+  padding-top: 0px;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 10px;
+  margin-left: 0px; 
+}
+.page-header.padded {
+    padding: 15px; 
+}
+.page-header.padded-h {
+    padding-left: 15px;
+    padding-right: 15px; 
+}
+.page-header.padded-v {
+    padding-top: 15px;
+    padding-bottom: 15px; 
+}
+
+.page-header h1 {
+  line-height: 1; }
+
+/*-------------------------Row customization--------------------------------------*/

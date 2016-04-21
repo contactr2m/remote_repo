@@ -13,7 +13,7 @@ from . managers import ArtistManager
 from django.db.models import Q
 from core.models import TimeAuditModel
 from django_extensions.db.fields.json import JSONField
-
+#   from cacheops import cached
 
 @python_2_unicode_compatible
 class Person(TimeAuditModel):
@@ -107,21 +107,23 @@ class Artist(Person):
         info = (self._meta.app_label, self._meta.model_name)
         return reverse('admin:%s_%s_change' % info, args=str(self.pk,))
 
+    #   @cached(timeout=60*60*24)
     def get_albums(self):
         from album.models import Album
         try:
-            r = Album.objects.filter(Q(song_album__artist=self) |
-                                     Q(song_album__song_artists=self) |
-                                     Q(album_artists=self)).distinct()
+            r = Album.objects.filter(Q(song_album__artist__pk=self.pk) |
+                                     Q(song_album__song_artists__pk=self.pk) |
+                                     Q(album_artists__pk=self.pk)).nocache().distinct()
             return r
         except Exception as e:
             return []
 
-    # TODO: Fix Me
+    #   @cached(timeout=60*60*24)
     def get_song(self):
         from song.models import Song
         try:
-            m = Song.objects.filter(Q(artist=self)).distinct()
+            m = Song.objects.filter(Q(artist__pk=self.pk) |
+                                    Q(song_artists__pk=self.pk)).nocache().distinct()
             return m
         except Exception as e:
             return []

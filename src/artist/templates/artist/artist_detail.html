@@ -2,6 +2,10 @@
 {%  load spurl %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
+{%  load spurl %}
+{% load i18n %}
+{% load hash_tags %}
+{%  load adv_cache %}
 
 {% block title %}{{ block.super }}ARTIST{% endblock %}
 
@@ -15,17 +19,165 @@
 <div class="container-fixed">
     <h3>ARTIST</h3>
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-9">
             <ul class="breadcrumb">
                 <li class={% active_nav request 'albums' %}>
-                    <a href="{% url 'albums:albums' %}">ALBUMS</a>
+                    <a href="{% url 'albums:album-list' %}">ALBUMS</a>
                 </li>
                 <li class={% active_nav request 'artist' %}>
-                    <a href="{% url 'artist:artist' %}">ARTIST</a>
+                    <a href="{% url 'artist:artist-list' %}">ARTIST</a>
                 </li>
             </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="item_detail" style="">
 
-<p>Date: {{ now|date }}</p>
+                <section class="shaded">
+                    <div class="row iteminfo release">
+                        {% include "artist/_detail_info.html" %}
+                    </div>
+                </section>
+
+                <div class="item_menu" id="item_menu">
+                    <ul class="nav nav-tabs">
+                        <li {% if object.get_song.count > 0 %}class="active"{% endif %}>
+                            <a href="#tracklist" data-toggle="tab">{% trans "Overview" %}</a>
+                        </li>
+                        {% if m_contrib.count > 0 %}
+                        <li {% if object.get_song.count < 1 %}class="active"{% endif %}>
+                            <a href="#contribution" data-toggle="tab">{% trans "Credited" %} ({{ m_contrib.count }})</a>
+                        </li>
+                        {% endif %}
+                        {% if object.bio %}
+                        <li {% if object.get_song.count < 1  and m_contrib.count < 1 %}class="active"{% endif %}>
+                            <a href="#biography" data-toggle="tab">{% trans "Biography" %}</a>
+                        </li>
+                        {% endif %}
+
+                        <li>
+                            <a href="#history" data-toggle="tab">{% trans "Edit History" %}</a>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="clear"></div>
+
+                <section class="tabbed item_inner">
+
+                    <div class="tab-content">
+
+                        <div class="tab-pane {% if albums.count > 0 %}active{% endif %}" id="tracklist"
+                             class="topflop">
+
+                            {% if s_top %}
+                                <section class="top">
+
+                                    <h2>
+                                        {% url "songs:song-list" as media_list %}
+                                        {% trans "Top Tracks" %}
+                                                    <span class="pull-right">
+                                                        <a href="{% spurl path=media_list query="artist={{ object.slug }}" %}">
+                                                            <i class="icon-chevron-sign-right"></i>
+                                                            {% blocktrans with count=object.song_artist.count name=object.name %}Show all {{ count }} tracks by {{ name }}{% endblocktrans %}
+                                                        </a>
+                                                    </span>
+                                    </h2>
+
+                                    <div class="listview container medias s">
+
+                                        <div class="list_header"></div>
+
+                                        <div class="list_body">
+
+                                            {# for item in media.object_list #}
+                                            {% for item in s_top %}
+                                                {% include "song/_list_item_foreign_xs.html" %}
+                                            {% empty %}
+                                                <p>
+                                                    {% trans "Not enough ratings to calculate the 'Tops'." %}
+                                                </p>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+
+                                </section>
+                            {% endif %}
+
+                            <section class="top">
+                                {% url "albums:album-list" as release_list %}
+
+                                <h2>
+                                    {% trans "Albums" %}
+                                                <span class="pull-right">
+                                                    <a href="{% spurl path=release_list query="artist={{ object.slug }}" %}">
+                                                        <i class="icon-chevron-sign-right"></i>
+                                                        {% blocktrans with count=object.get_albums.count name=object.name %}Show all {{ count }} albums by {{ name }}{% endblocktrans %}
+                                                    </a>
+                                                </span>
+                                </h2>
+
+                                <div class="listview container releases inner l">
+
+                                    <div class="list_header"></div>
+
+                                    <div class="list_body">
+
+                                        {% for item in albums %}
+                                            {% include "album/list_item_l.html" %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+
+
+                        <div class="tab-pane {% if albums.count < 1 and m_contrib > 1 %}active{% endif %}"
+                             id="contribution">
+
+                            <section class="contribution">
+
+                                <h2>{% trans "Appears on" %}</h2>
+
+                                <div class="listview container medias s">
+
+                                    <div class="list_header"></div>
+
+                                    <div class="list_body">
+
+                                        {% with highlight=object extended=1 %}
+                                            {% for item in m_contrib %}
+                                                {% include "song/_list_item_foreign_xs.html" %}
+                                            {% endfor %}
+                                        {% endwith %}
+                                    </div>
+                                </div>
+                            </section>
+
+                        </div>
+
+                        <div class="tab-pane" id="biography">
+                            <section class="description">
+                                <h2>{% trans "Biography" %}</h2>
+
+                                <div class="description markdown padded-h">
+
+                                </div>
+
+                            </section>
+
+                        </div>
+
+                        <div class="tab-pane" id="broadcasts">
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="col-sm-3 sidebar">
         </div>
     </div>
 </div>

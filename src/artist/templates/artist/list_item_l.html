@@ -38,19 +38,19 @@
                 <ul class="unstyled horizontal">
                     {% if item.appearances.num_albums > 0 %}
                         <li>
-                            {% url "alibrary-release-list" as release_list %}
+                            {% url "albums:album-list" as release_list %}
                             {% trans "Albums" %}:&nbsp;<a
                                 href="{% spurl path=release_list query="artist={{ item.slug }}" %}"
-                                title="{% trans "Only show releases by" %} {{ item.name }}"
+                                title="{% trans "Only show albums by" %} {{ item.name }}"
                                 style="vertical-align: top;">{{ item.appearances.num_albums }}</a>
                         </li>
                     {% endif %}
                     {% if item.appearances.num_songs > 0 %}
                         <li style="padding-left: 30px">
-                            {% url "alibrary-media-list" as media_list %}
+                            {% url "songs:song-list" as media_list %}
                             {% trans "Songs" %}:&nbsp;<a
                                 href="{% spurl path=media_list query="artist={{ item.slug }}" %}"
-                                title="{% trans "Only show tracks by" %} {{ item.name }}"
+                                title="{% trans "Only show songs by" %} {{ item.name }}"
                                 style="vertical-align: top;">{{ item.appearances.num_songs }}</a>
                         </li>
                     {% endif %}
@@ -67,19 +67,18 @@
         </div>
     </div>
 
-    <!--<div class="by" style="position: absolute; bottom: 0; left: 5px; color: #999;">
+    <div class="by" style="position: absolute; bottom: 0; left: 5px; color: #999;">
         {% if item.creator %}
             {% trans "by" %}:
             <a style="color: #999;"
-               title="{{ item.creator.profile.get_display_name }}"
+               title="{{ item.creator.get_display_name }}"
                href="{{ item.creator.get_absolute_url }}">
-                {{ item.creator.profile.get_display_name|truncate_chars:16 }}
+                {{ item.creator.get_display_name|truncate_chars:16 }}
             </a>
             |
         {% endif %}
-        {{ item.created|naturalday }}
         {{ item.created_at|date:"SHORT_DATE_FORMAT" }}
-    </div>-->
+    </div>
 
 </div>
 

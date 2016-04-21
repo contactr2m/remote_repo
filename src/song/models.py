@@ -92,12 +92,13 @@ class Song(TimeAuditModel):
                                                     'slug': self.slug,
                                                     }, args=())
 
+    # TODO: Edit view for all models.
     def get_edit_url(self):
-        return reverse("songs:song-edit", args=(self.pk,))
+        return reverse("songs:song-edit", args=(str(self.pk)))
 
     def get_admin_url(self):
         info = (self._meta.app_label, self._meta.model_name)
-        return reverse('admin:%s_%s_change' % info, args=str(self.pk,))
+        return reverse('admin:%s_%s_change' % info, args=str(self.pk))
 
     def release_link(self):
         if self.album:
@@ -113,7 +114,7 @@ class Song(TimeAuditModel):
         artists = []
         if self.song_artists.count() > 0:
             for song_artist in self.song_songartist.all():
-                artists.append({'artist': song_artist.artist})
+                artists.append({'artist': song_artist.artist, 'join_phrase': '&'})
             return artists
 
         return artists
@@ -124,6 +125,8 @@ class Song(TimeAuditModel):
         if len(artists) > 1:
             try:
                 for artist in artists:
+                    if artist['join_phrase']:
+                        artist_str += ' %s ' % artist['join_phrase']
                     artist_str += artist['artist'].name
             except:
                 artist_str = artists[0].name

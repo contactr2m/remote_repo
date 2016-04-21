@@ -1,0 +1,60 @@
+{% load i18n  truncate spurl  %}
+
+<div class="list_body_row selectable item media {{ item.uuid }} {% if item.creator == user %} owner{% endif %}"
+     id="list_item_{{ item.id }}"
+     data-item_id="{{ item.id }}"
+     data-item_uuid="{{ item.uuid }}"
+     data-id="{{ item.id }}"
+     data-uuid="{{ item.uuid }}"
+     data-ct="media">
+
+
+    <!-- Track title -->
+    <div class="list_body_item c2">
+
+        <ul class="unstyled">
+            <li class="bold">
+
+                <a href="{{ item.get_absolute_url }}" title="{{ item.name }}">
+                    {{ item.name|truncate_chars_inner:32 }}
+                </a>
+
+            </li>
+            <li>
+                {%  if item.get_song_artists %}
+                    {% include "song/_credited_artists.html" with artist_list=item.get_song_artists %}
+                {% else %}{% if item.artist %}
+                    {% if item.artist.get_absolute_url %}
+                        <a href="{{ item.artist.get_absolute_url }}"
+                           title="{{ item.artist.name }}">{{ item.artist.name|truncate_chars_inner:28 }}</a>
+                    {% else %}
+                        <span>{{ item.artist.name|truncate_chars_inner:28 }}</span>
+                    {% endif %}
+                {% endif %}{% endif %}
+                &nbsp;
+            </li>
+        </ul>
+
+    </div>
+
+    <!-- Artist name -->
+    <div class="list_body_item c3" style="width: 220px;">
+        <ul class="unstyled">
+            <li class="bold">
+                {% if item.album %}
+
+                    {% if item.album.get_absolute_url %}
+                        <a href="{{ item.album.get_absolute_url }}"
+                           title="{{ item.album.name }}">{{ item.album.name|truncate_chars_inner:28 }}</a>
+                    {% else %}
+                        <span>{{ item.album.name|truncate_chars_inner:28 }}</span>
+                    {% endif %}
+                {% else %}
+                    &nbsp;
+                {% endif %}
+            </li>
+        </ul>
+
+    </div>
+
+</div>

@@ -1,0 +1,75 @@
+{% load truncate i18n thumbnail spurl %}
+<div class="col-sm-8 padded-h container_content">
+
+    <div class="page-header">
+        <h2>{{ object.name|truncate_chars_inner:40 }}
+        {% if object.artisttype %}
+        <small>{{ object.get_artisttypes }}</small>
+        {% endif %}
+        </h2>
+    </div>
+
+    <dl class="dl-horizontal main">
+
+        {% if object.appearances.num_albums > 0 or object.appearances.num_songs > 0 %}
+        <dt>
+            {% trans "Appearance" %}:
+        </dt>
+        <dd>
+            <ul class="unstyled horizontal">
+                {% if object.appearances.num_albums > 0 %}
+                <li>
+                    {% url "albums:album-list" as release_list %}
+                    <a href="{% spurl path=release_list query="artist={{ object.slug }}" %}" title="{% trans "Only show releases by" %} {{ object.name }}">
+                    {{ object.appearances.num_albums }} {% trans 'Albums' %}
+                    </a>
+                </li>
+                {% endif %}
+                {% if object.appearances.num_albums > 0 and object.appearances.num_songs > 0 %}<li>&nbsp;|&nbsp;</li>{% endif %}
+                {% if object.appearances.num_songs > 0 %}
+                <li>
+                    {% url "songs:song-list" as media_list %}
+                    <a href="{% spurl path=media_list query="artist={{ object.slug }}" %}" title="{% trans "Only show tracks by" %} {{ object.name }}">
+                    {{ object.appearances.num_songs }} {% trans 'Songs' %}
+                    </a>
+                </li>
+                {% endif %}
+                <li>&nbsp;</li>
+
+            </ul>
+            <div class="clear"></div>
+        </dd>
+        {% endif %}
+
+    </dl>
+
+    <dl class="dl-horizontal sub">
+
+        {% include 'element/_edit_timestamps.html' %}
+
+        <!--{% if object.tags %}-->
+        <dt>
+            {% trans "Tags" %}:
+        </dt>
+        <dd>
+                <!--{% for tag in object.tags %}
+                    <span class="tag">{{ tag.name }}</span>
+                {% endfor %}-->
+        </dd>
+        <!--{% endif %}-->
+
+    </dl>
+
+</div>
+
+<div class="col-sm-4 padded-h padded-v">
+
+    <div class="image">
+        {% if object.main_image %}
+        <a href="{% thumbnail object.main_image 1200x1200 upscale %}" class="zoomable cboxElement"> <img src="{% thumbnail object.main_image 170x170 crop upscale subject_location='0,0' %}" alt="Cover" /> </a>
+        {% else %}
+        <img src="/static/site/img/base/defaults/listview.artist.xl.png" alt="{% trans "No cover available" %}" />
+        {% endif %}
+    </div>
+
+</div>    

@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 import uuid
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
-import datetime
+from datetime import datetime
 from datetime import date
 from datetime import timedelta
 from django_extensions.db.fields import AutoSlugField
@@ -25,11 +25,11 @@ class Album(TimeAuditModel):
     slug = AutoSlugField(populate_from='name', editable=True, blank=True, overwrite=True)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
     YEAR_CHOICES = []
-    for r in range(1980, (datetime.datetime.now().year + 1)):
+    for r in range(1980, (datetime.now().year + 1)):
         YEAR_CHOICES.append((r, r))
     year = models.IntegerField(('year'),
                                choices=YEAR_CHOICES,
-                               default=datetime.datetime.now().year, blank=True)
+                               default=datetime.now().year, blank=True)
     songs = models.ManyToManyField('song.Song', related_name='albums', blank=True,
                                    through='AlbumSong')
     #   Image field
@@ -129,6 +129,8 @@ class Album(TimeAuditModel):
         if len(artists) > 1:
             try:
                 for artist in artists:
+                    if artist['join_phrase']:
+                        artist_str += ' %s ' % artist['join_phrase']
                     artist_str += artist['artist'].name
             except:
                 artist_str = artists[0].name
@@ -144,7 +146,7 @@ class Album(TimeAuditModel):
         artists = []
         if self.album_artists.count() > 0:
             for albumartist in self.album_albumartist_album.all():
-                artists.append({'artist': albumartist.artist})
+                artists.append({'artist': albumartist.artist, 'join_phrase': '&'})
             return artists
 
         songs = self.get_songs()

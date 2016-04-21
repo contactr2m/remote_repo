@@ -46,7 +46,19 @@ class ArtistDetailView(generic.DetailView):
         obj = kwargs.get('object', None)
         query1 = Q(song_album__artist=obj)
         query2 = Q(album_artists=obj)
+        self.extra_context['m_contrib'] = Song.objects.filter(song_artists=obj)[0:48]
         self.extra_context['albums'] = Album.objects.filter(query1 | query2).distinct()[0:8]
+        s_top = []
+        # TODO: Votes not implemented yet.
+        # song_top = Song.objects.filter(artist=obj,
+        #                                votes__vote__gt=0).order_by('-votes__vote').distinct()
+        song_top = Song.objects.filter(artist=obj)
+        if song_top.count() > 0:
+            song_top = song_top[0:10]
+            for song in song_top:
+                s_top.append(song)
+
+        self.extra_context['s_top'] = s_top
         context.update(self.extra_context)
         return context
 

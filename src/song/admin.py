@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from song.models import Song, Genre
+from song.models import Song, Genre, SongArtists
 from album.models import Album
 from core.admin import BaseAdmin
 
@@ -38,13 +38,22 @@ class SongAlbumInline(admin.TabularInline):
     raw_id_fields = ['album', ]
 
 
+class SongArtistsInline(admin.TabularInline):
+    model = SongArtists
+    extra = 2
+    fieldsets = [
+        (None, {'fields': ['artist']}),
+    ]
+    raw_id_fields = ['artist', ]
+
+
 class SongAdmin(BaseAdmin):
 
     list_display = ('name', 'created_at', 'release_link', 'artist', )
     search_fields = ['artist__name', 'album__name', 'name']
     list_filter = ()
 
-    inlines = [SongAlbumInline]
+    inlines = [SongAlbumInline, SongArtistsInline]
 
     readonly_fields = [
         'slug',

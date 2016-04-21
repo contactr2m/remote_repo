@@ -1,0 +1,130 @@
+{% load i18n truncate spurl adv_cache hash_tags %}
+
+<div class="list_body_row selectable item media {{ item.uuid }} {% if item.creator == user %} owner{% endif %}"
+     id="list_item_{{ item.id }}"
+     data-item_id="{{ item.id }}"
+     data-item_uuid="{{ item.uuid }}"
+     data-id="{{ item.id }}"
+     data-uuid="{{ item.uuid }}"
+     data-ct="media">
+
+    <!-- Play icon -->
+    <div class="list_body_item c1 action">
+
+        <ul class="unstyled horizontal action">
+
+            <li class="square">
+                <a href="#"
+                   title="{% trans "Play" %}">
+                    <i class="icon icon-play"></i>
+                </a>
+            </li>
+
+            <li class="square">
+                <a href="#"
+                   title="{% trans "Queue" %}">
+                    <i class="icon icon-reorder"></i></a>
+                </a>
+            </li>
+
+        </ul>
+        {% comment %}
+        <div class="tracknumber">
+            {% if item.tracknumber %}
+            <span>{{ item.tracknumber }}</span>
+            {% endif %}
+        </div>
+        {% endcomment %}
+
+    </div>
+
+    <!-- Track title -->
+    <div class="list_body_item c2">
+
+        <ul class="unstyled">
+            <li class="bold">
+
+                <a href="{{ item.get_absolute_url }}" title="{{ item.name }}">
+                    {{ item.name|truncate_chars_inner:32 }}
+                    {% comment %}
+                    {% cache 600 "topflop_media" item.pk %}
+                    {% topflop_for_object item %}
+                    {% endcache %}
+                    {% endcomment %}
+                </a>
+
+            </li>
+
+        </ul>
+
+        <ul class="unstyled small">
+
+            {% for ea in item.song_artists.all %}
+                <li>
+                    <a href="{{ ea.artist.get_absolute_url }}">{{ ea.artist.name }}</a>
+                    
+                </li>
+            {% endfor %}
+
+        </ul>
+
+    </div>
+    <!-- Artist name -->
+    <div class="list_body_item c3">
+        <ul class="unstyled">
+            <li class="bold">
+                {%  if item.get_song_artists %}
+                    {% include "song/_credited_artists.html" with artist_list=item.get_song_artists %}
+                {% else %}{% if item.artist %}
+                    {% if item.artist.get_absolute_url %}
+                        <a href="{{ item.artist.get_absolute_url }}"
+                           title="{{ item.artist.name }}">{{ item.artist.name|truncate_chars_inner:28 }}</a>
+                    {% else %}
+                        <span>{{ item.artist.name|truncate_chars_inner:28 }}</span>
+                    {% endif %}
+                {% endif %}{% endif %}
+                &nbsp;
+            </li>
+
+
+        </ul>
+
+    </div>
+
+    <div class="list_body_item c4">
+        <ul class="unstyled">
+        </ul>
+
+    </div>
+
+
+    <!-- Relations -->
+    <div class="list_body_item c5 relations">
+
+        <ul class="unstyled horizontal">
+        
+        </ul>
+
+    </div>
+
+
+    <div class="list_body_item c6 action">
+
+        <ul class="unstyled action secondary horizontal">
+
+            <!--get_edit_url here, for now use admin url till you fix edit view for all models.-->
+         
+                <li>
+                    <a href="{{ item.get_absolute_url }}"
+                       class=""
+                       title="{% trans "Edit" %}">
+                        <i class="icon icon-edit"></i>
+                    </a>
+                </li>
+
+        </ul>
+
+    </div>
+
+
+</div>

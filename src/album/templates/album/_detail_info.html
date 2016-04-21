@@ -1,0 +1,87 @@
+{% load truncate i18n thumbnail spacify_tags %}
+
+<div class="col-sm-8 padded-h container_content">
+
+    <div class="page-header">
+        <h2>{{ object.name|truncate_chars_inner:40 }}
+            <small>{% if object.albumtype %}{{ object.get_albumtype_display }} {% endif %}</small>
+        </h2>
+    </div>
+
+
+    <dl class="dl-horizontal main">
+
+        <dt>
+            {% trans "Artist" %}:
+        </dt>
+        <dd>
+
+            {% for artist in object.get_artists %}
+
+                {# check if extended artist (with join phrase) #}
+                {% if "join_phrase" in artist %}
+
+                    {% with item=artist.artist %}
+                        {% if artist.join_phrase %}{{ artist.join_phrase }}{% endif %}
+                        {% include "element/_inline_link.html" %}
+                    {% endwith %}
+
+                {% else %}
+
+                    {% with item=artist %}
+                        {% include "element/_inline_link.html" %}
+                        {% if not forloop.last %},{% endif %}
+                    {% endwith %}
+
+                {% endif %}
+
+
+            {% endfor %}
+            &nbsp;
+        </dd>
+
+            <dt>{% trans "Release date" %}:</dt>
+            <dd>{{ object.releasedate|date:"SHORT_DATE_FORMAT" }} ({% trans "Promo release" %})</dd>
+
+    </dl>
+
+
+    <dl class="dl-horizontal sub">
+
+
+        {% include 'element/_edit_timestamps.html' %}
+
+        {% if object.tags %}
+            <dt>
+                {% trans "Tags" %}:
+            </dt>
+            <dd>
+                {% for tag in object.tags %}
+                    <span class="tag">{{ tag.name|spacify }}</span>
+                {% endfor %}
+            </dd>
+        {% endif %}
+
+    </dl>
+
+
+</div>
+
+
+<div class="col-sm-4 padded-h padded-v">
+
+    <div class="image">
+        {% if object.main_image %}
+            <a href="{% thumbnail object.main_image 1200x1200 crop upscale %}" class="zoomable cboxElement"> <img
+                    src="{% thumbnail object.main_image 170x170 crop upscale subject_location=object.main_image.subject_location %}"
+                    alt="Cover"/> </a>
+        {% else %}
+            <img src="/static/site/img/base/defaults/listview.release.xl.png" alt="{% trans "No cover available" %}"/>
+        {% endif %}
+    </div>
+
+    <div class="rating">
+        
+    </div>
+
+</div>

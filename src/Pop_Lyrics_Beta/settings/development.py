@@ -20,6 +20,7 @@ INSTALLED_APPS += (
     'bootstrap3',
     'select_multiple_field',
     'adv_cache_tag',
+    'cacheops',
 
     'guardian',
     'pure_pagination',
@@ -145,3 +146,6 @@ PAGINATION_SETTINGS = {
     'PAGE_RANGE_DISPLAYED': 6,
     'MARGIN_PAGES_DISPLAYED': 3,
 }
+
+GUARDIAN_GET_INIT_ANONYMOUS_USER = 'accounts.models.get_anonymous_user_instance'
+#   GUARDIAN_MONKEY_PATCH = False
