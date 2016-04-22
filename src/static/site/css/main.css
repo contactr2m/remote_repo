@@ -2121,4 +2121,79 @@ input, textarea {
 .page-header h1 {
   line-height: 1; }
 
-/*-------------------------Row customization--------------------------------------*/
+/*-------------------------Icon --------------------------------------*/
+.icon-thumbs-up:before {
+  content: "[]"; }
+
+.icon-thumbs-down:before {
+  content: "[]"; }
+
+/*-------------------------rating --------------------------------------*/
+  ul.arating {
+  *zoom: 1; }
+  ul.arating:before, ul.arating:after {
+    display: table;
+    content: ""; }
+  ul.arating:after {
+    clear: both; }
+  ul.arating li {
+    display: block;
+    margin: 0 0 0 6px; }
+    ul.arating li a {
+      display: block;
+      height: 16px;
+      min-width: 16px;
+      color: #333;
+      border-radius: 1px;
+      padding: 2px 3px 2px 3px; }
+      ul.arating li a i {
+        font-size: 14px; }
+      ul.arating li a span {
+        color: #777777;
+        text-decoration: none;
+        margin: 0 0 0 3px; }
+      ul.arating li a.active, ul.arating li a:hover {
+        color: white;
+        text-decoration: none !important; }
+        ul.arating li a.active.vote1, ul.arating li a:hover.vote1 {
+          background-color: #00bb73; }
+        ul.arating li a.active.vote-1, ul.arating li a:hover.vote-1 {
+          background-color: #F00; }
+        ul.arating li a.active span, ul.arating li a.active i, ul.arating li a:hover span, ul.arating li a:hover i {
+          color: white; }
+
+ul.arating_ {
+  *zoom: 1; }
+  ul.arating_:before, ul.arating_:after {
+    display: table;
+    content: ""; }
+  ul.arating_:after {
+    clear: both; }
+  ul.arating_ li {
+    display: block;
+    margin: 8px 8px 0 0;
+    border: 1px solid #cccccc;
+    border-radius: 1px; }
+    ul.arating_ li a {
+      display: block;
+      height: 16px;
+      min-width: 16px;
+      background: url(/static/rating/img/like.dislike.16.png);
+      background-repeat: no-repeat;
+      padding: 0 7px 0 3px;
+      background-color: white; }
+      ul.arating_ li a span {
+        color: #777777;
+        text-decoration: none;
+        margin: 0 0 0 18px; }
+    ul.arating_ li a.vote1 {
+      background-position: 0 -32px; }
+      ul.arating_ li a.vote1.active, ul.arating_ li a.vote1:hover {
+        background-position: 0 0; }
+    ul.arating_ li a.vote-1 {
+      background-position: 0 -48px; }
+      ul.arating_ li a.vote-1.active, ul.arating_ li a.vote-1:hover {
+        background-position: 0 -16px; }
+    ul.arating_ li a.active, ul.arating_ li a:hover {
+      background-color: #BCF5E0;
+      text-decoration: none !important; }

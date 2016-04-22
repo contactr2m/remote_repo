@@ -21,7 +21,7 @@ INSTALLED_APPS += (
     'select_multiple_field',
     'adv_cache_tag',
     'cacheops',
-
+    'rating',
     'guardian',
     'pure_pagination',
     'spurl',  # URL manipulation
@@ -37,7 +37,8 @@ INSTALLED_APPS += (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.facebook',)
+    'allauth.socialaccount.providers.facebook',
+    )
 
 # Show emails to console in DEBUG mode
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
