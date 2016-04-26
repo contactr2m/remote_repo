@@ -50,15 +50,24 @@ class ArtistDetailView(generic.DetailView):
         self.extra_context['albums'] = Album.objects.filter(query1 | query2).distinct()[0:8]
         s_top = []
         # TODO: Votes not implemented yet.
-        # song_top = Song.objects.filter(artist=obj,
-        #                                votes__vote__gt=0).order_by('-votes__vote').distinct()
-        song_top = Song.objects.filter(artist=obj)
+        song_top = Song.objects.filter(artist=obj,
+                                       votes__vote__gt=0).order_by('-votes__vote').distinct()
+        # song_top = Song.objects.filter(artist=obj)
         if song_top.count() > 0:
             song_top = song_top[0:10]
             for song in song_top:
                 s_top.append(song)
 
         self.extra_context['s_top'] = s_top
+        s_flop = []
+        song_flop = Song.objects.filter(artist=obj,
+                                        votes__vote__lt=0).order_by('votes__vote').distinct()
+        if song_flop.count() > 0:
+            song_flop = song_flop[0:10]
+            for media in song_flop:
+                s_flop.append(media)
+
+        self.extra_context['s_flop'] = s_flop
         context.update(self.extra_context)
         return context
 

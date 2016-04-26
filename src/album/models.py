@@ -14,6 +14,7 @@ from core.util.custom_slug import unique_slugify
 import logging
 from core.models import TimeAuditModel
 from django.contrib.contenttypes.models import ContentType
+import rating
 # Create your models here.
 logger = logging.getLogger("project")
 
@@ -170,3 +171,6 @@ class AlbumArtists(models.Model):
 class AlbumSong(models.Model):
     album = models.ForeignKey('album.Album')
     song = models.ForeignKey('song.Song')
+
+
+rating.models.enable_voting_on(Album)

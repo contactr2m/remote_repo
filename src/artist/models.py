@@ -13,6 +13,7 @@ from . managers import ArtistManager
 from django.db.models import Q
 from core.models import TimeAuditModel
 from django_extensions.db.fields.json import JSONField
+import rating
 #   from cacheops import cached
 
 @python_2_unicode_compatible
@@ -171,3 +172,6 @@ def show_artisttype(ingredient):
     """
     decoder = dict(Artist.ROLE_CHOICES)
     return force_text(decoder[ingredient])
+
+
+rating.models.enable_voting_on(Artist)

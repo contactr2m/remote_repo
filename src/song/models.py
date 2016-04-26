@@ -10,6 +10,7 @@ from .managers import SongManager
 from django.core.urlresolvers import reverse
 from core.util.custom_slug import unique_slugify
 from core.models import TimeAuditModel
+import rating
 # Create your models here.
 
 
@@ -154,3 +155,6 @@ class SongArtists(models.Model):
 
     def __str__(self):
         return '%s on %s' % (self.artist, self.song)
+
+
+rating.models.enable_voting_on(Song)

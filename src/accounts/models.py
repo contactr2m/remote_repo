@@ -156,5 +156,5 @@ class EmailUser(AbstractEmailUser):
         swappable = 'AUTH_USER_MODEL'
 
 
-def get_anonymous_user_instance(User):
+def get_anonymous_user_instance(EmailUser):
     return EmailUser(email="Anonymous@Anonymous.com", first_name="Anonymous", last_name="User")
